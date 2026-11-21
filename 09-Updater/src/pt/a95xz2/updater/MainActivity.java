@@ -425,10 +425,10 @@ public class MainActivity extends Activity {
 
     /** Linha da lista: titulo, detalhe, notas e (se houver accao) botao Instalar. Devolve o botao. */
     private View entry(String head, String detail, String notes, View.OnClickListener onInstall) {
+        // 1.1: botao por baixo do texto (alinhado a esquerda): a direita ficava fora do ecra em TVs com overscan
         LinearLayout box = new LinearLayout(this);
-        box.setOrientation(LinearLayout.HORIZONTAL);
-        box.setGravity(Gravity.CENTER_VERTICAL);
-        box.setPadding(px(18), px(12), px(18), px(12));
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setPadding(px(22), px(14), px(22), px(16));
         GradientDrawable g = new GradientDrawable();
         g.setCornerRadius(px(10));
         g.setColor(0x1AFFFFFF);
@@ -447,17 +447,17 @@ public class MainActivity extends Activity {
             n.setPadding(0, px(6), 0, 0);
             txt.addView(n);
         }
-        box.addView(txt, new LinearLayout.LayoutParams(0, -2, 1f));
+        box.addView(txt, new LinearLayout.LayoutParams(-1, -2));
 
         View btn = null;
         if (onInstall != null) {
             btn = button(I18n.s("install"), onInstall);
             LinearLayout.LayoutParams blp = new LinearLayout.LayoutParams(-2, -2);
-            blp.setMargins(px(20), 0, px(6), 0);
+            blp.setMargins(px(4), px(12), 0, px(2));
             box.addView(btn, blp);
         }
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-1, -2);
-        lp.setMargins(0, px(10), 0, 0);
+        lp.setMargins(0, px(10), px(24), 0);
         list.addView(box, lp);
         return btn;
     }

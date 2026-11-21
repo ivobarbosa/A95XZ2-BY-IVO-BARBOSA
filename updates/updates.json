@@ -1,24 +1,30 @@
 {
   "schema": 1,
   "firmware": {
-    "version": 5,
-    "name": "v5",
+    "version": 6,
+    "name": "v6",
     "notes": {
-      "en": "Front display: standby shows only the time (dimmed) and the clock keeps running; dynamic Wi-Fi icon; Magisk environment completed automatically (modules and systemless hosts work after a fresh flash); A95X Z2 Updater built in (Settings > System update).",
-      "pt": "Visor: em espera mostra só as horas (mais escuro) e o relógio continua a andar; ícone Wi-Fi dinâmico; ambiente do Magisk completado automaticamente (módulos e systemless hosts funcionam depois de gravar); A95X Z2 Updater incluído (Definições > Atualização do sistema)."
+      "en": "Settings > System update now opens the A95X Z2 Updater; Updater 1.1: the Install button is below the text so it is never cut off on TVs with overscan.",
+      "pt": "Definições > Atualização do sistema passa a abrir o A95X Z2 Updater; Updater 1.1: o botão Instalar fica por baixo do texto e já não fica cortado em TVs com overscan."
     },
     "deltas": [
       {
+        "from": 5,
+        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v6/delta-v5-to-v6.zip",
+        "size": 41291,
+        "sha256": "722dbe50b5afbda139b9b44880c1a4d2d1c61ccf0997402bb31f96a01ae5308e"
+      },
+      {
         "from": 4,
-        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v5/delta-v4-to-v5.zip",
-        "size": 64276,
-        "sha256": "5a2bf19630e8c261b798911caeb4cf95e2e8457d636ee86a36b5100735c15ed2"
+        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v6/delta-v4-to-v6.zip",
+        "size": 69260,
+        "sha256": "45a403ea6216bc37b3a05a3f72f292d924653da97cae973b02665adaf65898c9"
       }
     ],
     "full": {
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v5/update-a95xz2-a10-v5.zip",
-      "size": 950762589,
-      "sha256": "6ec5869ab1aa32e89343c1e1571fdd82851dd31d3f9a449626a99daefaaf0b16"
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v6/update-a95xz2-a10-v6.zip",
+      "size": 950745855,
+      "sha256": "ab340236dc76a82886daa5a476a135f43418f372b392ab920f730969b70cbab5"
     }
   },
   "apps": [
@@ -26,17 +32,25 @@
       "package": "pt.a95xz2.launcher",
       "versionCode": 3,
       "versionName": "1.2",
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v5/A95XZ2-Home-1.2.apk",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v6/A95XZ2-Home-1.2.apk",
       "size": 197301,
       "sha256": "e1e419dc5622cf9b3d42055bc5198024b4305a21ccd80da4c583067eb0d9a024"
     },
     {
       "package": "pt.a95xz2.updater",
+      "versionCode": 2,
+      "versionName": "1.1",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v6/A95XZ2-Updater-1.1.apk",
+      "size": 86693,
+      "sha256": "f0c673c4191df87ca55ff684144bf39f6596267815ba443776a6de8de062dcc6"
+    },
+    {
+      "package": "com.dtinfo.tools",
       "versionCode": 1,
       "versionName": "1.0",
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v5/A95XZ2-Updater-1.0.apk",
-      "size": 86693,
-      "sha256": "12582aa47f3e07faf384e597892b3cdce81ac44f8d2fcdb5c9501d77315857fa"
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v6/A95XZ2-UpdateShortcut-1.0.apk",
+      "size": 12683,
+      "sha256": "69ca95e3e6278cd5dde817ab48e28384a9f70e32a0fec539360c5e251964cc08"
     }
   ]
 }
