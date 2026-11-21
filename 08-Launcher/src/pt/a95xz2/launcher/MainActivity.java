@@ -1245,6 +1245,7 @@ public class MainActivity extends Activity {
                 savePrefs(); rebuild();
             });
         }
+        opts.add(I18n.s("close_app")); acts.add(() -> closeApps(java.util.Collections.singletonList(a.pkg), true));
         opts.add(I18n.s("app_info"));
         acts.add(() -> startSafe(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                 Uri.fromParts("package", a.pkg, null))));
@@ -1262,10 +1263,56 @@ public class MainActivity extends Activity {
         if (g != null) g.run();
     }
 
+    // ------------------------------------------------------------------ fechar apps (1.5)
+
+    /** Fecha as apps em segundo plano (todas menos o launcher e servicos do sistema). */
+    private void closeBackgroundApps() {
+        ArrayList<String> pk = new ArrayList<>();
+        for (App a : apps) if (!a.pkg.equals(getPackageName())) pk.add(a.pkg);
+        closeApps(pk, false);
+    }
+
+    /**
+     * Fecha apps: com root usa "am force-stop" (fecha tambem servicos, ex. Prime Video); sem root usa
+     * killBackgroundProcesses (so processos em cache). Mostra a memoria libertada.
+     */
+    private void closeApps(final List<String> pkgs, final boolean single) {
+        final long before = availMem();
+        io.execute(() -> {
+            boolean rooted = false;
+            try {
+                StringBuilder c = new StringBuilder();
+                for (String p : pkgs) c.append("am force-stop ").append(p).append(";");
+                Process pr = new ProcessBuilder("su", "-c", c.toString()).redirectErrorStream(true).start();
+                rooted = pr.waitFor() == 0;
+            } catch (Exception ignored) { }
+            if (!rooted) {
+                android.app.ActivityManager am = (android.app.ActivityManager) getSystemService(ACTIVITY_SERVICE);
+                for (String p : pkgs) try { am.killBackgroundProcesses(p); } catch (Exception ignored) { }
+            }
+            try { Thread.sleep(800); } catch (InterruptedException ignored) { }
+            final long freed = Math.max(0, availMem() - before) / (1024 * 1024);
+            final boolean r = rooted;
+            ui.post(() -> {
+                android.widget.Toast.makeText(this, (single ? I18n.s("app_closed") : I18n.s("apps_closed"))
+                        + (freed > 0 ? " · " + freed + " MB" : "") + (r ? "" : " " + I18n.s("no_root_partial")),
+                        android.widget.Toast.LENGTH_SHORT).show();
+                updateStatus();
+            });
+        });
+    }
+
+    private long availMem() {
+        android.app.ActivityManager.MemoryInfo mi = new android.app.ActivityManager.MemoryInfo();
+        ((android.app.ActivityManager) getSystemService(ACTIVITY_SERVICE)).getMemoryInfo(mi);
+        return mi.availMem;
+    }
+
     private void showLauncherMenu() {
         lastGroup = null;
         ArrayList<String> opts = new ArrayList<>();
         ArrayList<Runnable> acts = new ArrayList<>();
+        opts.add(I18n.s("close_bg")); acts.add(this::closeBackgroundApps);
         opts.add(I18n.s("grp_favs") + "  ›"); acts.add(this::menuFavorites);
         opts.add(I18n.s("grp_apps") + "  ›"); acts.add(this::menuApps);
         opts.add(I18n.s("grp_custom") + "  ›"); acts.add(this::showLauncherOptions);
