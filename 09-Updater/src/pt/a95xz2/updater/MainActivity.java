@@ -17,6 +17,7 @@ import android.os.Looper;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -44,16 +45,11 @@ import java.util.zip.ZipInputStream;
 /**
  * A95X Z2 Updater: procura atualizacoes (manifesto assinado no GitHub), aplica deltas de
  * firmware via root (apply.sh do pacote) e atualiza apps com pm install -r.
- * Sem servicos nem polling: so faz rede quando o utilizador pede.
+ * Verificacao automatica de 6 em 6 h em CheckJob (aviso no canto); aqui so quando o utilizador pede.
  */
 public class MainActivity extends Activity {
 
-    private static final String BASE = "https://raw.githubusercontent.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/main/updates/";
-    private static final String MANIFEST_URL = BASE + "updates.json";
-    private static final String SIG_URL = BASE + "updates.json.sig";
     private static final String INSTALL_URL = "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/blob/main/INSTALL.md";
-    private static final String RELEASE_FILE = "/system/etc/a95xz2-release";
-    private static final String LAUNCHER_PKG = "pt.a95xz2.launcher";
     // Pasta de trabalho do pacote delta (root). Recriada de cada vez.
     static final String OTA_DIR = "/data/local/tmp/a95x-ota";
     private static final String APK_TMP = "/data/local/tmp/a95x-app.apk";
@@ -65,7 +61,7 @@ public class MainActivity extends Activity {
     private final ExecutorService io = Executors.newSingleThreadExecutor();
     private volatile boolean busy = false;
 
-    private TextView info, status, logView, logTitle;
+    private TextView fwLabel, status, autoLine, logView, logTitle;
     private TextView checkBtn, restartBtn;
     private ProgressBar bar;
     private LinearLayout list;
@@ -79,10 +75,26 @@ public class MainActivity extends Activity {
         I18n.init();
         dp = getResources().getDisplayMetrics().density;
         setContentView(buildUi());
-        fwInstalled = readFwVersion();
+        fwInstalled = Ota.installedFw();
         refreshInfo();
+        Ota.schedulePeriodic(this);   // idempotente: nao reinicia o periodo
         status.setText(I18n.s("hint"));
         checkBtn.requestFocus();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshAuto();
+    }
+
+    /** Idioma do sistema mudou com a app aberta: reconstruir os textos (se nao estiver ocupada). */
+    @Override
+    public void onConfigurationChanged(android.content.res.Configuration c) {
+        super.onConfigurationChanged(c);
+        String before = I18n.code();
+        I18n.init();
+        if (!before.equals(I18n.code()) && !busy) recreate();
     }
 
     @Override
@@ -102,7 +114,17 @@ public class MainActivity extends Activity {
     private int px(float v) { return Math.round(v * dp); }
 
     private View buildUi() {
+        FrameLayout root = new FrameLayout(this);
+
+        // Marca de agua igual a do launcher (atras do conteudo)
+        TextView mark = text("A95X Z2", 120, 0x0DFFFFFF, true);
+        mark.setTypeface(Typeface.create("sans-serif-black", Typeface.NORMAL));
+        FrameLayout.LayoutParams mlp = new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.END);
+        mlp.setMargins(0, 0, px(40), px(10));
+        root.addView(mark, mlp);
+
         ScrollView scroll = new ScrollView(this);
+        root.addView(scroll, new FrameLayout.LayoutParams(-1, -1));
         scroll.setFillViewport(true);
         LinearLayout col = new LinearLayout(this);
         col.setOrientation(LinearLayout.VERTICAL);
@@ -110,12 +132,16 @@ public class MainActivity extends Activity {
         col.setClipChildren(false);
         scroll.addView(col);
 
+        // Titulo a esquerda, versao da firmware pequena a direita na mesma linha
+        LinearLayout head = new LinearLayout(this);
+        head.setOrientation(LinearLayout.HORIZONTAL);
+        head.setGravity(Gravity.CENTER_VERTICAL);
+        head.setPadding(0, 0, 0, px(22));
         TextView title = text(I18n.s("title"), 32, Color.WHITE, true);
-        col.addView(title);
-
-        info = text("", 17, 0xCCFFFFFF, false);
-        info.setPadding(0, px(8), 0, px(18));
-        col.addView(info);
+        head.addView(title, new LinearLayout.LayoutParams(0, -2, 1f));
+        fwLabel = text("", 16, 0xB3FFFFFF, false);
+        head.addView(fwLabel);
+        col.addView(head);
 
         LinearLayout row = new LinearLayout(this);
         row.setOrientation(LinearLayout.HORIZONTAL);
@@ -134,6 +160,10 @@ public class MainActivity extends Activity {
         status = text("", 18, Color.WHITE, false);
         status.setPadding(0, px(14), 0, px(8));
         col.addView(status);
+
+        autoLine = text("", 14, 0x80FFFFFF, false);
+        autoLine.setPadding(0, 0, 0, px(8));
+        col.addView(autoLine);
 
         bar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
         bar.setMax(1000);
@@ -158,7 +188,7 @@ public class MainActivity extends Activity {
         logView.setBackground(lg);
         logView.setVisibility(View.GONE);
         col.addView(logView, new LinearLayout.LayoutParams(-1, -2));
-        return scroll;
+        return root;
     }
 
     private TextView text(String s, float sp, int color, boolean bold) {
@@ -262,22 +292,6 @@ public class MainActivity extends Activity {
 
     // ------------------------------------------------------------------ versoes instaladas
 
-    /** Le version= de /system/etc/a95xz2-release; sem ficheiro: v4 se o modelo for A95X Z2. */
-    private static int readFwVersion() {
-        File f = new File(RELEASE_FILE);
-        if (f.canRead()) {
-            try (BufferedReader r = new BufferedReader(new FileReader(f))) {
-                String l;
-                while ((l = r.readLine()) != null) {
-                    l = l.trim();
-                    if (l.startsWith("version=")) return Integer.parseInt(l.substring(8).trim());
-                }
-            } catch (Exception ignored) { }
-            return -1;
-        }
-        return "A95X Z2".equals(Build.MODEL) ? 4 : -1;
-    }
-
     private String fwName(int v) { return v > 0 ? "v" + v : I18n.s("unknown"); }
 
     private PackageInfo pkgInfo(String pkg) {
@@ -288,16 +302,19 @@ public class MainActivity extends Activity {
         }
     }
 
-    @SuppressWarnings("deprecation")
-    private String pkgVersion(String pkg) {
-        PackageInfo pi = pkgInfo(pkg);
-        return pi == null ? I18n.s("not_installed") : pi.versionName + " (" + pi.versionCode + ")";
+    private void refreshInfo() {
+        fwLabel.setText(I18n.s("firmware") + " " + fwName(fwInstalled));
+        refreshAuto();
     }
 
-    private void refreshInfo() {
-        info.setText(I18n.s("installed") + ":   " + I18n.s("firmware") + " " + fwName(fwInstalled)
-                + "   ·   " + I18n.s("launcher") + " " + pkgVersion(LAUNCHER_PKG)
-                + "   ·   " + I18n.s("updater") + " " + pkgVersion(getPackageName()));
+    /** "Verificacao automatica a cada 6 h · ultima verificacao: <data>" */
+    private void refreshAuto() {
+        if (autoLine == null) return;
+        long t = Ota.prefs(this).getLong(Ota.P_LAST, 0);
+        String when = t == 0 ? I18n.s("never")
+                : java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT, java.text.DateFormat.SHORT,
+                        I18n.locale()).format(new java.util.Date(t));
+        autoLine.setText(I18n.f("auto_line", when));
     }
 
     // ------------------------------------------------------------------ manifesto
@@ -317,30 +334,16 @@ public class MainActivity extends Activity {
         indeterminate();
         io.execute(() -> {
             try {
-                byte[] json;
-                try {
-                    json = Net.get(MANIFEST_URL, 1024 * 1024);
-                } catch (Net.HttpError e) {
-                    if (e.code == 404) { setStatus(I18n.s("no_info"), false); return; }
-                    throw e;
-                }
-                byte[] sig;
-                try {
-                    sig = Net.get(SIG_URL, 16 * 1024);
-                } catch (Net.HttpError e) {
-                    if (e.code == 404) { setStatus(I18n.s("sig_error"), true); return; }
-                    throw e;
-                }
-                byte[] pub;
-                try (InputStream in = getResources().openRawResource(R.raw.ota_pub)) {
-                    pub = Net.readAll(in);
-                }
-                if (!Net.verify(json, sig, pub)) { setStatus(I18n.s("sig_error"), true); return; }
                 JSONObject m;
                 try {
-                    m = new JSONObject(new String(json, "UTF-8"));
-                    if (m.optInt("schema", 0) != 1) throw new IllegalArgumentException("schema " + m.opt("schema"));
-                } catch (Exception e) {
+                    m = Ota.fetch(MainActivity.this);
+                } catch (Ota.NoInfo e) {
+                    setStatus(I18n.s("no_info"), false);
+                    return;
+                } catch (Ota.BadSig e) {
+                    setStatus(I18n.s("sig_error"), true);
+                    return;
+                } catch (Ota.BadManifest e) {
                     setStatus(I18n.f("bad_manifest", e.getMessage()), true);
                     return;
                 }
@@ -349,6 +352,7 @@ public class MainActivity extends Activity {
                 setStatus(I18n.f("net_error", msg(e)), true);
             } finally {
                 setBusy(false);
+                ui.post(this::refreshAuto);
             }
         });
     }

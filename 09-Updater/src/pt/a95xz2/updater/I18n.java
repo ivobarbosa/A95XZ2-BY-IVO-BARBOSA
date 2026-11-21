@@ -58,6 +58,11 @@ final class I18n {
         {"error", "Erro: %s", "Error: %s", "Error: %s", "Erreur : %s", "Fehler: %s"},
         {"log", "Registo", "Log", "Registro", "Journal", "Protokoll"},
         {"busy", "Aguarde: há uma operação em curso.", "Please wait: an operation is in progress.", "Espere: hay una operación en curso.", "Patientez : une opération est en cours.", "Bitte warten: Ein Vorgang läuft."},
+        {"popup_fw", "Nova atualização do sistema disponível: %s", "New system update available: %s", "Nueva actualización del sistema disponible: %s", "Nouvelle mise à jour du système disponible : %s", "Neues Systemupdate verfügbar: %s"},
+        {"popup_app", "Nova versão disponível: %1$s %2$s", "New version available: %1$s %2$s", "Nueva versión disponible: %1$s %2$s", "Nouvelle version disponible : %1$s %2$s", "Neue Version verfügbar: %1$s %2$s"},
+        {"popup_hint", "OK: abrir  ·  VOLTAR: fechar", "OK: open  ·  BACK: close", "OK: abrir  ·  ATRÁS: cerrar", "OK : ouvrir  ·  RETOUR : fermer", "OK: öffnen  ·  ZURÜCK: schließen"},
+        {"auto_line", "Verificação automática a cada 6 h  ·  última verificação: %s", "Automatic check every 6 h  ·  last check: %s", "Comprobación automática cada 6 h  ·  última comprobación: %s", "Vérification automatique toutes les 6 h  ·  dernière vérification : %s", "Automatische Prüfung alle 6 Std.  ·  letzte Prüfung: %s"},
+        {"never", "nunca", "never", "nunca", "jamais", "nie"},
         {"notes", "Novidades", "What's new", "Novedades", "Nouveautés", "Neuerungen"},
     };
 
