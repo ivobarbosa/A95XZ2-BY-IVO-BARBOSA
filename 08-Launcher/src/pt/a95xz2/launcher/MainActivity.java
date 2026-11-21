@@ -475,6 +475,7 @@ public class MainActivity extends Activity {
         items[items.length - 1] = I18n.s("lang_system");
         int sel = "auto".equals(cur) ? 0 : I18n.indexOf(cur) + 1;
         new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
+                .setOnCancelListener(x -> backToGroup())
                 .setTitle(I18n.s("language"))
                 .setSingleChoiceItems(items, sel, (d, w) -> {
                     d.dismiss();
@@ -1080,6 +1081,7 @@ public class MainActivity extends Activity {
             on[i] = !hidden.contains(list.get(i).pkg);
         }
         new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
+                .setOnCancelListener(x -> backToGroup())
                 .setTitle(I18n.s("visible_apps"))
                 .setMultiChoiceItems(names, on, (d, i, c) -> on[i] = c)
                 .setPositiveButton(I18n.s("save"), (d, w) -> {
@@ -1096,6 +1098,7 @@ public class MainActivity extends Activity {
     private void pickFavSort(String fromPkg) {
         String[] names = {I18n.s("alpha"), I18n.s("by_use"), I18n.s("manual")};
         new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
+                .setOnCancelListener(x -> backToGroup())
                 .setTitle(I18n.s("sort_favs"))
                 .setItems(names, (d, w) -> {
                     if (w == 2) { startMove(fromPkg, W_FAV); return; }
@@ -1121,6 +1124,7 @@ public class MainActivity extends Activity {
         String[] names = {I18n.s("alpha"), I18n.s("by_use"), I18n.s("custom_long")};
         int cur = Arrays.asList(modes).indexOf(sortMode);
         new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
+                .setOnCancelListener(x -> backToGroup())
                 .setTitle(I18n.s("sort_apps"))
                 .setSingleChoiceItems(names, cur, (d, w) -> {
                     d.dismiss();
@@ -1202,6 +1206,7 @@ public class MainActivity extends Activity {
     // ------------------------------------------------------------------ menus
 
     private void showAppMenu(App a, String where) {
+        lastGroup = null;
         final boolean inFavs = W_FAV.equals(where);
         final boolean inRec = W_REC.equals(where);
         final Cat inCat = catOf(where);
@@ -1249,7 +1254,16 @@ public class MainActivity extends Activity {
     }
 
     /** Menu da roda dentada (1.3): 5 grupos curtos em vez de uma lista comprida. */
+    /** Grupo do menu de onde se abriu o dialogo atual: VOLTAR regressa la (null = nao veio do menu). */
+    private Runnable lastGroup;
+
+    private void backToGroup() {
+        Runnable g = lastGroup;
+        if (g != null) g.run();
+    }
+
     private void showLauncherMenu() {
+        lastGroup = null;
         ArrayList<String> opts = new ArrayList<>();
         ArrayList<Runnable> acts = new ArrayList<>();
         opts.add(I18n.s("grp_favs") + "  ›"); acts.add(this::menuFavorites);
@@ -1261,23 +1275,26 @@ public class MainActivity extends Activity {
     }
 
     private void menuFavorites() {
+        lastGroup = this::menuFavorites;
         ArrayList<String> opts = new ArrayList<>();
         ArrayList<Runnable> acts = new ArrayList<>();
         opts.add(I18n.s("edit_favs")); acts.add(this::pickFavorites);
         opts.add(I18n.s("sort_favs")); acts.add(() -> { if (!favs.isEmpty()) pickFavSort(firstFav()); });
-        menu(I18n.s("grp_favs"), opts, acts);
+        menu(I18n.s("grp_favs"), opts, acts, this::showLauncherMenu);
     }
 
     private void menuApps() {
+        lastGroup = this::menuApps;
         ArrayList<String> opts = new ArrayList<>();
         ArrayList<Runnable> acts = new ArrayList<>();
         opts.add(I18n.s("categories")); acts.add(this::showCategories);
         opts.add(I18n.s("show_hide_apps")); acts.add(this::pickVisible);
         opts.add(sortLabel()); acts.add(this::pickSort);
-        menu(I18n.s("grp_apps"), opts, acts);
+        menu(I18n.s("grp_apps"), opts, acts, this::showLauncherMenu);
     }
 
     private void menuSystem() {
+        lastGroup = this::menuSystem;
         ArrayList<String> opts = new ArrayList<>();
         ArrayList<Runnable> acts = new ArrayList<>();
         // A95X Z2 Updater (escondido da lista de apps): mesma entrada que Definicoes -> Atualizacao do sistema
@@ -1292,11 +1309,12 @@ public class MainActivity extends Activity {
         // Magisk 31.1 ja nao mostra aviso de pedido de root: o acesso da-se no separador Superuser ("+")
         Intent mg = pm.getLaunchIntentForPackage("com.topjohnwu.magisk");
         if (mg != null) { opts.add(I18n.s("root_apps")); acts.add(() -> startSafe(mg)); }
-        menu(I18n.s("grp_system"), opts, acts);
+        menu(I18n.s("grp_system"), opts, acts, this::showLauncherMenu);
     }
 
     /** Submenu: recentes, abrir ao ligar, proteccao de ecra, exportar/importar. */
     private void showLauncherOptions() {
+        lastGroup = this::showLauncherOptions;
         ArrayList<String> opts = new ArrayList<>();
         ArrayList<Runnable> acts = new ArrayList<>();
         opts.add(I18n.s("show_recents") + ": " + I18n.s(showRecents ? "yes" : "no"));
@@ -1314,7 +1332,7 @@ public class MainActivity extends Activity {
         opts.add(I18n.s("language")); acts.add(this::pickLanguage);
         opts.add(I18n.s("export_cfg")); acts.add(this::exportConfig);
         opts.add(I18n.s("import_cfg")); acts.add(this::importConfig);
-        menu(I18n.s("grp_custom"), opts, acts);
+        menu(I18n.s("grp_custom"), opts, acts, this::showLauncherMenu);
     }
 
     private void pickAutostart() {
@@ -1328,6 +1346,7 @@ public class MainActivity extends Activity {
             if (list.get(i).pkg.equals(cur)) sel = i + 1;
         }
         new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
+                .setOnCancelListener(x -> backToGroup())
                 .setTitle(I18n.s("autostart"))
                 .setSingleChoiceItems(names, sel, (d, w) -> {
                     d.dismiss();
@@ -1350,6 +1369,7 @@ public class MainActivity extends Activity {
             if (SAVER_OPTS[i] == saverMinutes()) sel = i;
         }
         new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
+                .setOnCancelListener(x -> backToGroup())
                 .setTitle(I18n.s("screensaver"))
                 .setSingleChoiceItems(names, sel, (d, w) -> {
                     d.dismiss();
@@ -1376,7 +1396,7 @@ public class MainActivity extends Activity {
             opts.add(c.name + "  (" + installed(c.apps).size() + ")");
             acts.add(() -> showCatMenu(c));
         }
-        menu(I18n.s("categories"), opts, acts);
+        menu(I18n.s("categories"), opts, acts, this::backToGroup);
     }
 
     private void showCatMenu(final Cat c) {
@@ -1782,10 +1802,16 @@ public class MainActivity extends Activity {
     }
 
     private void menu(String title, List<String> opts, List<Runnable> acts) {
-        new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
+        menu(title, opts, acts, null);
+    }
+
+    /** onBack != null: VOLTAR no comando regressa ao menu anterior em vez de fechar tudo (1.4). */
+    private void menu(String title, List<String> opts, List<Runnable> acts, Runnable onBack) {
+        AlertDialog.Builder b = new AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
                 .setTitle(title)
-                .setItems(opts.toArray(new String[0]), (d, w) -> acts.get(w).run())
-                .show();
+                .setItems(opts.toArray(new String[0]), (d, w) -> acts.get(w).run());
+        if (onBack != null) b.setOnCancelListener(d -> onBack.run());
+        b.show();
     }
 
     private void startSafe(Intent i) {

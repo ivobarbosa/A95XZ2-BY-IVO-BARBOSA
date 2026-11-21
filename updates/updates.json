@@ -30,19 +30,19 @@
   "apps": [
     {
       "package": "pt.a95xz2.launcher",
-      "versionCode": 4,
-      "versionName": "1.3",
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v6/A95XZ2-Home-1.3.apk",
-      "size": 197301,
-      "sha256": "d38e11705e37f0d2104bf60e081799eafea654e2fe538f318846c0b0cf14c3d7"
+      "versionCode": 5,
+      "versionName": "1.4",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v6/A95XZ2-Home-1.4.apk",
+      "size": 201397,
+      "sha256": "967596e70083e107aa5fef2579595a0261a71fdecb54c7c71e0fa1d68a6f3085"
     },
     {
       "package": "pt.a95xz2.updater",
-      "versionCode": 4,
-      "versionName": "1.3",
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v6/A95XZ2-Updater-1.3.apk",
-      "size": 98981,
-      "sha256": "09fc4efda37cf09b600649796dc42f5176bf98d13e00aee0c70c8c1280d32afc"
+      "versionCode": 5,
+      "versionName": "1.4",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v6/A95XZ2-Updater-1.4.apk",
+      "size": 389876,
+      "sha256": "679a7a843c6335836a7414c6455ff4b087d32c4b06460f14299896f773beff91"
     },
     {
       "package": "com.dtinfo.tools",

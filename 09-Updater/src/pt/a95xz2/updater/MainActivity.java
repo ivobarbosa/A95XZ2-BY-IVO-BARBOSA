@@ -125,12 +125,14 @@ public class MainActivity extends Activity {
     private View buildUi() {
         FrameLayout root = new FrameLayout(this);
 
-        // Marca de agua igual a do launcher (atras do conteudo)
-        TextView mark = text("A95X Z2", 120, 0x0DFFFFFF, true);
-        mark.setTypeface(Typeface.create("sans-serif-black", Typeface.NORMAL));
-        FrameLayout.LayoutParams mlp = new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.END);
-        mlp.setMargins(0, 0, px(40), px(10));
-        root.addView(mark, mlp);
+        // 1.4: fundo = imagem estatica da box (logotipo de arranque), com um veu escuro leve para o texto
+        android.widget.ImageView logo = new android.widget.ImageView(this);
+        logo.setImageResource(R.drawable.bg_logo);
+        logo.setScaleType(android.widget.ImageView.ScaleType.CENTER_CROP);
+        root.addView(logo, new FrameLayout.LayoutParams(-1, -1));
+        View veil = new View(this);
+        veil.setBackgroundColor(0x66000000);
+        root.addView(veil, new FrameLayout.LayoutParams(-1, -1));
 
         ScrollView scroll = new ScrollView(this);
         root.addView(scroll, new FrameLayout.LayoutParams(-1, -1));
@@ -312,7 +314,7 @@ public class MainActivity extends Activity {
     }
 
     private void refreshInfo() {
-        fwLabel.setText(I18n.s("firmware") + " " + fwName(fwInstalled));
+        fwLabel.setText(fwName(fwInstalled));   // 1.4: so a versao, ex. "v6"
         refreshAuto();
     }
 
