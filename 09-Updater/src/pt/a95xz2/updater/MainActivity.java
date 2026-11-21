@@ -195,7 +195,7 @@ public class MainActivity extends Activity {
         logView.setPadding(px(12), px(8), px(12), px(8));
         GradientDrawable lg = new GradientDrawable();
         lg.setCornerRadius(px(8));
-        lg.setColor(0x40000000);
+        lg.setColor(0xD90B0E12);
         logView.setBackground(lg);
         logView.setVisibility(View.GONE);
         col.addView(logView, new LinearLayout.LayoutParams(-1, -2));
@@ -457,7 +457,7 @@ public class MainActivity extends Activity {
         box.setPadding(px(22), px(14), px(22), px(16));
         GradientDrawable g = new GradientDrawable();
         g.setCornerRadius(px(10));
-        g.setColor(0x1AFFFFFF);
+        g.setColor(0xE61B2128); g.setStroke(px(1), 0x33FFFFFF);   // 1.6: cartao opaco, legivel sobre o logotipo
         box.setBackground(g);
         box.setClipToPadding(false);
         box.setClipChildren(false);
