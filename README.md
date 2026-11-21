@@ -5,6 +5,8 @@ A clean, fast and stable **Android 10** firmware for the **A95X Z2** TV box
 It is based on the HK1 Max Android 10 firmware (same SoC) and adapted to this board,
 with a custom lightweight launcher, root, a working front display and no bloatware.
 
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/ivobarbosa)
+
 > ⚠️ **Use at your own risk.** Flashing firmware can make your device unbootable.
 > The authors are **not responsible for any damage**. Read **[DISCLAIMER.md](DISCLAIMER.md)** first.
 
@@ -103,12 +105,14 @@ Everything is built with plain Python 3 (standard library) plus `e2fsprogs` (`de
 - [x] **A95X Z2 Updater** (*Settings → System update*): signed update manifest in this repository, firmware deltas verified block by block, app updates
 - [x] Remote firmware updates (small block-level deltas, verified before and after writing; the
       bootloader is never written remotely)
-- [ ] Translated "More Settings" menu
+- [x] Translated Android Settings menus (v8/v9)
 
 ## Support the project
 
 If this project helped you, you can support its development:
-**Ko-fi / GitHub Sponsors — links coming soon.**
+[![Support me on Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20this%20project-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/ivobarbosa)
+
+☕ **[ko-fi.com/ivobarbosa](https://ko-fi.com/ivobarbosa)**
 
 ## License
 
