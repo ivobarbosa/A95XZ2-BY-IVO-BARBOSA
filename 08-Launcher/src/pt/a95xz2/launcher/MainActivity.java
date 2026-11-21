@@ -1248,27 +1248,51 @@ public class MainActivity extends Activity {
         menu(a.label, opts, acts);
     }
 
+    /** Menu da roda dentada (1.3): 5 grupos curtos em vez de uma lista comprida. */
     private void showLauncherMenu() {
+        ArrayList<String> opts = new ArrayList<>();
+        ArrayList<Runnable> acts = new ArrayList<>();
+        opts.add(I18n.s("grp_favs") + "  ›"); acts.add(this::menuFavorites);
+        opts.add(I18n.s("grp_apps") + "  ›"); acts.add(this::menuApps);
+        opts.add(I18n.s("grp_custom") + "  ›"); acts.add(this::showLauncherOptions);
+        opts.add(I18n.s("grp_system") + "  ›"); acts.add(this::menuSystem);
+        opts.add(I18n.s("about")); acts.add(this::showAbout);
+        menu("A95X Z2 Home", opts, acts);
+    }
+
+    private void menuFavorites() {
         ArrayList<String> opts = new ArrayList<>();
         ArrayList<Runnable> acts = new ArrayList<>();
         opts.add(I18n.s("edit_favs")); acts.add(this::pickFavorites);
         opts.add(I18n.s("sort_favs")); acts.add(() -> { if (!favs.isEmpty()) pickFavSort(firstFav()); });
+        menu(I18n.s("grp_favs"), opts, acts);
+    }
+
+    private void menuApps() {
+        ArrayList<String> opts = new ArrayList<>();
+        ArrayList<Runnable> acts = new ArrayList<>();
         opts.add(I18n.s("categories")); acts.add(this::showCategories);
         opts.add(I18n.s("show_hide_apps")); acts.add(this::pickVisible);
         opts.add(sortLabel()); acts.add(this::pickSort);
-        opts.add(I18n.s("launcher_opts")); acts.add(this::showLauncherOptions);
-        opts.add(I18n.s("language")); acts.add(this::pickLanguage);
+        menu(I18n.s("grp_apps"), opts, acts);
+    }
+
+    private void menuSystem() {
+        ArrayList<String> opts = new ArrayList<>();
+        ArrayList<Runnable> acts = new ArrayList<>();
+        // A95X Z2 Updater (escondido da lista de apps): mesma entrada que Definicoes -> Atualizacao do sistema
+        Intent up = new Intent("android.settings.SYSTEM_UPDATE_SETTINGS");
+        if (pm.resolveActivity(up, 0) != null) { opts.add(I18n.s("system_update")); acts.add(() -> startSafe(up)); }
+        opts.add(I18n.s("network")); acts.add(() -> startSafe(new Intent(Settings.ACTION_WIFI_SETTINGS)));
         opts.add(I18n.s("android_settings"));
         acts.add(() -> {
             Intent i = pm.getLaunchIntentForPackage("com.android.tv.settings");
             startSafe(i != null ? i : new Intent(Settings.ACTION_SETTINGS));
         });
-        opts.add(I18n.s("network")); acts.add(() -> startSafe(new Intent(Settings.ACTION_WIFI_SETTINGS)));
         // Magisk 31.1 ja nao mostra aviso de pedido de root: o acesso da-se no separador Superuser ("+")
         Intent mg = pm.getLaunchIntentForPackage("com.topjohnwu.magisk");
         if (mg != null) { opts.add(I18n.s("root_apps")); acts.add(() -> startSafe(mg)); }
-        opts.add(I18n.s("about")); acts.add(this::showAbout);
-        menu("A95X Z2 Home", opts, acts);
+        menu(I18n.s("grp_system"), opts, acts);
     }
 
     /** Submenu: recentes, abrir ao ligar, proteccao de ecra, exportar/importar. */
@@ -1287,9 +1311,10 @@ public class MainActivity extends Activity {
         acts.add(this::pickAutostart);
         opts.add(I18n.s("screensaver") + ": " + saverLabel(saverMinutes()));
         acts.add(this::pickSaver);
+        opts.add(I18n.s("language")); acts.add(this::pickLanguage);
         opts.add(I18n.s("export_cfg")); acts.add(this::exportConfig);
         opts.add(I18n.s("import_cfg")); acts.add(this::importConfig);
-        menu(I18n.s("launcher_opts"), opts, acts);
+        menu(I18n.s("grp_custom"), opts, acts);
     }
 
     private void pickAutostart() {
