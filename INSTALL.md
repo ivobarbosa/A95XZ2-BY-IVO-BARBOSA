@@ -84,5 +84,15 @@ RKDevTool must show **"Found One LOADER Device"** (or *MASKROM*) at the bottom.
 
 ## 9. Updates
 
-Future versions will be installable from *Settings → System update* (A95X Z2 Updater), with signed
-packages downloaded from this repository's Releases. Until then, flash new versions the same way.
+Once v5 or later is installed, **no PC is needed for updates**:
+
+- Open *Settings → System update* (or the launcher's gear menu → *System → System update*).
+  The **A95X Z2 Updater** checks automatically and lists firmware and app updates.
+- It also checks by itself every 6 hours and shows a small notice in the bottom-right corner when an update
+  is available (OK opens the updater). It never interrupts video.
+- **Firmware updates** are small deltas: every block is verified before writing (the box must be exactly on the
+  expected version) and re-read after writing; then the box restarts. If the check fails nothing is written —
+  flash the full image instead.
+- Only our own components are updated this way. Third-party apps (SmartTube, AdAway, Magisk…) update from their
+  authors as usual.
+- Root for the updater is granted automatically on first boot.

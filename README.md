@@ -16,17 +16,21 @@ with a custom lightweight launcher, root, a working front display and no bloatwa
   USB, Ethernet and the **front VFD clock** working.
 - **No bloatware**: outdated and unwanted preinstalled apps are physically removed from
   the image (not just hidden), giving ~650 MB of extra free space.
-- **A95X Z2 Home**: a custom launcher (~160 KB, no ads, no internet permission,
-  ~38 MB RAM) with favorites, categories, recents, sorting, hide apps, RAM/temperature
-  indicators, screensaver, config export/import and 5 languages.
+- **A95X Z2 Home**: a custom launcher (~200 KB, no ads, no internet permission) with favorites,
+  categories, recents, sorting, hide apps, RAM/temperature indicators, screensaver, open an app at
+  power-on, config export/import and 5 languages; gear menu grouped into Favorites, Apps & categories,
+  Customize and System (with a *System update* shortcut).
 - **Root** with Magisk 31.1, preinstalled.
 - **SmartTube** preinstalled (ad-free YouTube client for TV).
 - **Smooth video**: VP9/AV1 decoders that fail on this hardware are hidden, so apps use
   the hardware H.264 (AVC) decoder.
 - Own **boot logo and boot animation**; device name and model shown as "A95X Z2".
 - **English by default**; the system and the launcher follow the language you choose.
-- Planned: **over-the-air updates** from this repository's Releases (apps and firmware,
-  signed and verified).
+- **Over-the-air updates** with the built-in **A95X Z2 Updater** (*Settings → System update*): checks
+  automatically (when opened and every 6 hours, with a small on-screen notice), downloads small firmware
+  deltas and app updates from this repository's Releases, verifies the signed manifest and every block before
+  and after writing. Only our own components are updated this way (firmware settings and optimizations, the
+  launcher, the updater); third-party apps (SmartTube, AdAway, Magisk…) keep updating from their authors.
 
 ## Supported hardware
 
