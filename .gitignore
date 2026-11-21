@@ -1,0 +1,45 @@
+# Never publish: personal data, credentials, keys and large binaries.
+# Firmware images and APKs are distributed through GitHub Releases, not in the repository.
+04-Backups/
+06-Ferramentas-Windows/
+**/WifiConfigStore*.xml
+**/wpa_supplicant*.conf
+**/adbkey*
+*.jks
+*.keystore
+*.pass
+*.pem
+*.key
+*.img
+*.bin
+*.apk
+*.7z
+*.zip
+*.rar
+*.raw
+*.bmp
+__pycache__/
+*.pyc
+08-Launcher/build/
+03-Firmware/HK1-Max-original/
+# Third-party binaries (download from the official Magisk release) and build leftovers
+05-Construcao/magisk-patchkit/magisk
+05-Construcao/magisk-patchkit/magiskboot
+05-Construcao/magisk-patchkit/magiskinit
+05-Construcao/magisk-patchkit/init-ld
+*.idsig
+
+# Notas de trabalho pessoais (ficam so no PC)
+05-Construcao/METODO-REUTILIZAVEL.md
+RELATORIO-*.md
+05-Construcao/PLANO-*.md
+LEIA-ME.txt
+01-Guia/Guia-instalacao-A95XZ2.pdf
+01-Guia/RECUPERACAO-MASKROM.md
+01-Guia/A95XZ2-Manual-PT.pdf
+02-Scripts/
+05-Construcao/appbackup.sh
+05-Construcao/dl-fw.sh
+**/SHA256SUMS.txt
+05-Construcao/vfdsrv.sh
+01-Guia/manual-src/
