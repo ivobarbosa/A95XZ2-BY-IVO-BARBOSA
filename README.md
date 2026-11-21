@@ -67,7 +67,7 @@ You need: a **USB A-to-A cable**, a Windows PC and **`A95XZ2-Flash-Tools-Windows
    - otherwise hold the reset button (inside the AV jack) while powering on, with the
      cable in the **USB 2.0 OTG port**.
 3. RKDevTool should show *"Found One LOADER Device"*.
-4. Go to **Upgrade Firmware → Firmware**, pick `update-a95xz2-a10-vX.img`, click **Upgrade**
+4. Go to **Upgrade Firmware → Firmware**, pick `update-a95xz2-a10-1.0.img`, click **Upgrade**
    and wait for *"Download Firmware Success"*. Do not unplug anything while it runs.
 5. The first boot takes 3–5 minutes. Set up Wi-Fi with the remote.
 
@@ -98,6 +98,15 @@ Everything is built with plain Python 3 (standard library) plus `e2fsprogs` (`de
 | `01-Guia/` | MaskROM recovery guide, user manual (PDF) and photos |
 
 
+## Versions
+
+| Version | Status | Contents |
+|---|---|---|
+| **1.0** | Stable (current) | Android 10, Magisk root, A95X Z2 Home 1.0, A95X Z2 Updater 1.0, translated Settings 1.0, front display, ad blocking |
+
+Only the latest release is kept in [Releases](../../releases). Later versions are delivered by the
+A95X Z2 Updater (*Settings → System update*).
+
 ## Roadmap
 
 - [x] Android 10 boots on the A95X Z2 with HDMI, Wi-Fi, remote and VFD
@@ -105,7 +114,7 @@ Everything is built with plain Python 3 (standard library) plus `e2fsprogs` (`de
 - [x] **A95X Z2 Updater** (*Settings → System update*): signed update manifest in this repository, firmware deltas verified block by block, app updates
 - [x] Remote firmware updates (small block-level deltas, verified before and after writing; the
       bootloader is never written remotely)
-- [x] Translated Android Settings menus (v8/v9)
+- [x] Translated Android Settings menus
 
 ## Support the project
 

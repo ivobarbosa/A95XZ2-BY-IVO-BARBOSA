@@ -303,7 +303,12 @@ public class MainActivity extends Activity {
 
     // ------------------------------------------------------------------ versoes instaladas
 
-    private String fwName(int v) { return v > 0 ? "v" + v : I18n.s("unknown"); }
+    /** Nome a mostrar: o name= da firmware instalada (ex. "1.0"); senao "v" + numero interno. */
+    private String fwName(int v) {
+        if (v <= 0) return I18n.s("unknown");
+        if (v == fwInstalled) { String n = Ota.installedFwName(); if (n != null && !n.isEmpty()) return n; }
+        return "v" + v;
+    }
 
     private PackageInfo pkgInfo(String pkg) {
         try {

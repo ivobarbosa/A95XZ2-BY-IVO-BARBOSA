@@ -15,6 +15,12 @@ and `openssl`, on Linux or WSL. Run them with `python3 -I <tool>.py` (each file 
 | Signing keys | **Create your own**: APK keystore (made by `08-Launcher/build.sh` on first build) and OTA key (`openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072`). Never commit them. |
 | Built images (`*.img`, `*.zip`) | Produced by these tools; published in GitHub **Releases** |
 
+## Version numbers
+Each firmware has an **internal build number** (integer, always increasing: `version=` in `/system/etc/a95xz2-release`,
+`"version"` in the manifest, `from` in deltas) and a **public name** (`name=` / `"name"`, e.g. `1.0`) shown to users.
+Public **1.0** is internal build **10**; `build_v5.py` … `build_v10.py` are the steps that produced it.
+App versions work the same way: `versionCode` always increases, `versionName` is the public name.
+
 ## How a release is built (recipe)
 1. **Change the system partition** of the previous version with a `build_vN.py` (copy the latest one):
    `python3 -I build_v7.py super-hybrid-v6.img <launcher.apk> <updater.apk> <workdir>` → `super-hybrid-v7.img`.
@@ -37,7 +43,7 @@ and `openssl`, on Linux or WSL. Run them with `python3 -I <tool>.py` (each file 
 | `build_update.py` | Older same-size variant (legacy) |
 | `superinfo.py` | Read a sparse `super.img`, list dynamic partitions (LP metadata), unsparse |
 | `ext4r.py` | Minimal read-only ext4 reader (lookup, read file, list dirs) |
-| `build_v5.py` … `build_v9.py` | Build each version's `super` from the previous one (v5 also defines `apply.sh`) |
+| `build_v5.py` … `build_v10.py` | Build each version's `super` from the previous one (v5 also defines `apply.sh`) |
 | `mkdelta.py` | Block-level delta between any two versions, with simulation |
 | `mkmanifest.py` | Generate and sign `updates/updates.json` (RSA-SHA256) for the A95X Z2 Updater |
 | `mkhosts.py` | Ad/tracker blocking `hosts` from the AdAway + StevenBlack lists (`hosts-a95xz2` is the result) |

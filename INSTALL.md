@@ -22,12 +22,12 @@ Do **not** flash it on other models, even if they look the same.
 
 ## 3. Download and verify
 
-1. Open **[Releases](../../releases)** and download the latest `update-a95xz2-a10-vX.zip`,
+1. Open **[Releases](../../releases)** and download the latest `update-a95xz2-a10-1.0.zip`,
    `A95XZ2-Flash-Tools-Windows.zip` and `SHA256SUMS.txt`.
-2. Extract the ZIP. You get `update-a95xz2-a10-vX.img` (about 2.6 GB).
+2. Extract the ZIP. You get `update-a95xz2-a10-1.0.img` (about 2.6 GB).
 3. Check the checksum. In PowerShell:
    ```powershell
-   Get-FileHash .\update-a95xz2-a10-vX.img -Algorithm SHA256
+   Get-FileHash .\update-a95xz2-a10-1.0.img -Algorithm SHA256
    ```
    The value must match the one in `SHA256SUMS.txt`. **If it does not, do not flash.**
 
@@ -57,7 +57,7 @@ RKDevTool must show **"Found One LOADER Device"** (or *MASKROM*) at the bottom.
 ## 6. Flash
 
 1. In RKDevTool open the **Upgrade Firmware** tab.
-2. Click **Firmware** and choose `update-a95xz2-a10-vX.img`.
+2. Click **Firmware** and choose `update-a95xz2-a10-1.0.img`.
 3. Click **Upgrade**. Do not touch anything until the log shows **"Download Firmware Success"**
    (about 5–10 minutes).
 4. If the box does not restart on its own, unplug and replug the power.
@@ -93,7 +93,7 @@ RKDevTool must show **"Found One LOADER Device"** (or *MASKROM*) at the bottom.
 
 ## 9. Updates
 
-Once v5 or later is installed, **no PC is needed for updates**:
+Once 1.0 is installed, **no PC is needed for updates**:
 
 - Open *Settings → System update* (or the launcher's gear menu → *System → System update*).
   The **A95X Z2 Updater** checks automatically and lists firmware and app updates.

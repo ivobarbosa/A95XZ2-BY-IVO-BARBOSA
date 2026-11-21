@@ -94,6 +94,20 @@ final class Ota {
         return c.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
     }
 
+    /** Nome publico da firmware instalada (name= do ficheiro de versao, ex. "1.0"); null se nao houver. */
+    static String installedFwName() {
+        File f = new File(RELEASE_FILE);
+        if (!f.canRead()) return null;
+        try (BufferedReader r = new BufferedReader(new FileReader(f))) {
+            String l;
+            while ((l = r.readLine()) != null) {
+                l = l.trim();
+                if (l.startsWith("name=")) return l.substring(5).trim();
+            }
+        } catch (Exception ignored) { }
+        return null;
+    }
+
     /** Le version= de /system/etc/a95xz2-release; sem ficheiro: v4 se o modelo for A95X Z2. */
     static int installedFw() {
         File f = new File(RELEASE_FILE);
