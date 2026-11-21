@@ -80,6 +80,15 @@ public class MainActivity extends Activity {
         Ota.schedulePeriodic(this);   // idempotente: nao reinicia o periodo
         status.setText(I18n.s("hint"));
         checkBtn.requestFocus();
+        // 1.3: procura logo ao abrir (Definicoes -> Atualizacao do sistema), sem ter de carregar no botao
+        checkBtn.post(() -> { if (!busy) checkUpdates(); });
+    }
+
+    /** Aberta outra vez (Definicoes ou aviso) com a app ja em memoria: volta a procurar se estiver livre. */
+    @Override
+    protected void onNewIntent(android.content.Intent i) {
+        super.onNewIntent(i);
+        if (!busy) checkUpdates();
     }
 
     @Override
