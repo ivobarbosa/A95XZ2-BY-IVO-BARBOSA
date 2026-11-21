@@ -82,7 +82,7 @@ power strip looked exactly like a bricked box during development.
 ## Building from source
 
 Everything is built with plain Python 3 (standard library) plus `e2fsprogs` (`debugfs`,
-`e2fsck`) on Linux/WSL. The original vendor images are not included in this repository.
+`e2fsck`) on Linux/WSL. The original vendor images are not included in this repository. Tools and the release recipe: [05-Construcao/README.md](05-Construcao/README.md).
 
 | Folder | Content |
 |---|---|

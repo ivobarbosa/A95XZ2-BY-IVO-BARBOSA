@@ -48,3 +48,6 @@ LEIA-ME.txt
 HANDOFF.md
 07-Logo/
 03-Firmware/
+05-Construcao/autoflash/stick/plano.txt
+05-Construcao/autoflash/stick/MODO
+05-Construcao/autoflash/stick/*.bin
