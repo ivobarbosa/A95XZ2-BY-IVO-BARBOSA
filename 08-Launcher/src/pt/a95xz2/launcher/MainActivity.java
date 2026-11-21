@@ -1308,6 +1308,33 @@ public class MainActivity extends Activity {
         return mi.availMem;
     }
 
+    /** Le uma propriedade do sistema (getprop) sem API escondida. */
+    private static String sysProp(String k) {
+        try {
+            Process p = new ProcessBuilder("getprop", k).start();
+            java.io.BufferedReader r = new java.io.BufferedReader(new java.io.InputStreamReader(p.getInputStream()));
+            String v = r.readLine(); p.waitFor();
+            return v == null ? "" : v.trim();
+        } catch (Exception e) { return ""; }
+    }
+
+    /** Liga/desliga o ADB por rede com root (persiste entre arranques) e reinicia o adbd. */
+    private void setNetAdb(final boolean on) {
+        io.execute(() -> {
+            boolean ok = false;
+            try {
+                String c = on ? "setprop persist.adb.tcp.port 5555; setprop service.adb.tcp.port 5555"
+                              : "setprop persist.adb.tcp.port ''; setprop service.adb.tcp.port ''";
+                Process pr = new ProcessBuilder("su", "-c", c + "; setprop ctl.stop adbd; sleep 1; setprop ctl.start adbd")
+                        .redirectErrorStream(true).start();
+                ok = pr.waitFor() == 0;
+            } catch (Exception ignored) { }
+            final boolean r = ok;
+            ui.post(() -> android.widget.Toast.makeText(this, r ? I18n.s("net_adb") + ": " + I18n.s(on ? "on" : "off")
+                    : I18n.s("need_root"), android.widget.Toast.LENGTH_LONG).show());
+        });
+    }
+
     private void showLauncherMenu() {
         lastGroup = null;
         ArrayList<String> opts = new ArrayList<>();
@@ -1356,6 +1383,11 @@ public class MainActivity extends Activity {
         // Magisk 31.1 ja nao mostra aviso de pedido de root: o acesso da-se no separador Superuser ("+")
         Intent mg = pm.getLaunchIntentForPackage("com.topjohnwu.magisk");
         if (mg != null) { opts.add(I18n.s("root_apps")); acts.add(() -> startSafe(mg)); }
+        // 1.6: ADB por rede (porta 5555). O Android 10 nao tem esta opcao nas Definicoes; cada PC continua a ter
+        // de ser autorizado no ecra (ro.adb.secure=1 a partir da v7).
+        final boolean on = "5555".equals(sysProp("persist.adb.tcp.port"));
+        opts.add(I18n.s("net_adb") + ": " + I18n.s(on ? "on" : "off"));
+        acts.add(() -> setNetAdb(!on));
         menu(I18n.s("grp_system"), opts, acts, this::showLauncherMenu);
     }
 

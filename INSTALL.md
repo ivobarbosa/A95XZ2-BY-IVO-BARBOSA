@@ -73,6 +73,15 @@ RKDevTool must show **"Found One LOADER Device"** (or *MASKROM*) at the bottom.
 - **Root:** Magisk 31.1 is preinstalled. Apps are granted root in *Magisk → Superuser → "+"*
   (Magisk 31.1 no longer shows a pop-up when an app asks for root).
 
+## 7b. Security notes
+- **ADB requires authorization:** the first time a computer connects, the TV asks *"Allow USB debugging?"*.
+  Only accept computers you own (choose *Always allow* for your own PC).
+- **Network ADB** (port 5555) is **off** on a fresh install. Turn it on only if you need it, in the launcher:
+  *gear menu → System → ADB debugging over network*.
+- The vendor firmware's Android security patch level is **2020-05-05**; no vendor security updates exist for this
+  box. Keep *Android System WebView* and *Chrome* updated from the Play Store, keep ad/tracker blocking on and only
+  install apps from sources you trust.
+
 ## 8. If something goes wrong
 
 - **The box does not show anything / does not boot:** first check the power supply and the power strip.

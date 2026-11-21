@@ -20,7 +20,8 @@ with a custom lightweight launcher, root, a working front display and no bloatwa
   categories, recents, sorting, hide apps, RAM/temperature indicators, screensaver, open an app at
   power-on, config export/import and 5 languages; gear menu grouped into Favorites, Apps & categories,
   Customize and System (with a *System update* shortcut).
-- **Root** with Magisk 31.1, preinstalled.
+- **Root** with Magisk 31.1, preinstalled. **ADB requires on-screen authorization**; network ADB is off by default
+  (toggle in the launcher). Apps are compiled fully (`speed`) and animations are off for a snappier UI.
 - **SmartTube** preinstalled (ad-free YouTube client for TV).
 - **Smooth video**: VP9/AV1 decoders that fail on this hardware are hidden, so apps use
   the hardware H.264 (AVC) decoder.
