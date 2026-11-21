@@ -15,6 +15,10 @@ final class I18n {
     private static final String[][] T = {
         {"title", "Atualização do sistema", "System update", "Actualización del sistema", "Mise à jour du système", "Systemaktualisierung"},
         {"installed", "Instalado", "Installed", "Instalado", "Installé", "Installiert"},
+        {"update_all", "Atualizar tudo", "Update all", "Actualizar todo", "Tout mettre à jour", "Alles aktualisieren"},
+        {"all_done", "Tudo atualizado.", "Everything updated.", "Todo actualizado.", "Tout est à jour.", "Alles aktualisiert."},
+        {"self_then_reboot", "A instalar o atualizador… a box reinicia dentro de momentos.", "Installing the updater… the box restarts in a moment.", "Instalando el actualizador… el box se reinicia en unos momentos.", "Installation de l'outil de mise à jour… le boîtier redémarre dans un instant.", "Updater wird installiert… die Box startet gleich neu."},
+        {"self_then_reopen", "A instalar o atualizador… volta a abrir dentro de momentos.", "Installing the updater… it reopens in a moment.", "Instalando el actualizador… se vuelve a abrir en unos momentos.", "Installation de l'outil de mise à jour… il se rouvre dans un instant.", "Updater wird installiert… er öffnet sich gleich wieder."},
         {"firmware", "Firmware", "Firmware", "Firmware", "Firmware", "Firmware"},
         {"launcher", "Launcher", "Launcher", "Launcher", "Launcher", "Launcher"},
         {"updater", "Atualizador", "Updater", "Actualizador", "Programme de mise à jour", "Updater"},

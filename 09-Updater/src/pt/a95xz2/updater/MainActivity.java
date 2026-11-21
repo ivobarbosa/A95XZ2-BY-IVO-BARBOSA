@@ -385,6 +385,7 @@ public class MainActivity extends Activity {
     @SuppressWarnings("deprecation")
     private void showManifest(JSONObject m) {
         list.removeAllViews();
+        pendApps.clear(); pendFw = null;
         int count = 0;
         View firstBtn = null;
 
@@ -407,6 +408,7 @@ public class MainActivity extends Activity {
                     final JSONObject d = delta;
                     View b = entry(head, I18n.f("delta", size(d.optLong("size"))), nt,
                             v -> confirmFirmware(name, ver, d));
+                    pendFw = new Object[]{name, ver, d};
                     if (firstBtn == null) firstBtn = b;
                 } else {
                     JSONObject full = fw.optJSONObject("full");
@@ -429,12 +431,21 @@ public class MainActivity extends Activity {
                 View b = entry(I18n.f("app_item", label, a.optString("versionName", "?"), pi.versionName),
                         I18n.f("app_size", size(a.optLong("size"))), "",
                         v -> confirmApp(label, a));
+                pendApps.add(new Object[]{label, a});
                 if (firstBtn == null) firstBtn = b;
                 count++;
             }
         }
 
         setStatus(count == 0 ? I18n.s("up_to_date") : I18n.f("found_n", count), false);
+        if (pendApps.size() + (pendFw != null ? 1 : 0) > 1) {
+            // 1.5: botao "Atualizar tudo" no topo da lista
+            View all = button(I18n.s("update_all"), v -> confirmAll());
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-2, -2);
+            lp.setMargins(px(4), px(6), 0, px(4));
+            list.addView(all, 0, lp);
+            firstBtn = all;
+        }
         if (firstBtn != null) firstBtn.requestFocus();
     }
 
@@ -488,23 +499,37 @@ public class MainActivity extends Activity {
     }
 
     private void installFirmware(int to, JSONObject d) {
+        clearLog();
+        setBusy(true);
+        io.execute(() -> {
+            try {
+                if (fwWork(to, d)) ui.post(this::showRestart);
+            } finally {
+                setBusy(false);
+            }
+        });
+    }
+
+    private void showRestart() {
+        restartBtn.setVisibility(View.VISIBLE); list.removeAllViews(); restartBtn.requestFocus();
+    }
+
+    /** Transfere, verifica e aplica um delta (thread io). true = aplicado (falta reiniciar). */
+    private boolean fwWork(int to, JSONObject d) {
         final String url = d.optString("url", "");
         final long sz = d.optLong("size", 0);
         final String sha = d.optString("sha256", "").toLowerCase();
         final int from = fwInstalled;
-        clearLog();
-        setBusy(true);
-        io.execute(() -> {
+        try {
             File zip = new File(getCacheDir(), "ota.zip");
             File work = new File(getFilesDir(), "ota");
-            try {
-                if (!Root.available()) { setStatus(I18n.s("no_root"), true); return; }
+                if (!Root.available()) { setStatus(I18n.s("no_root"), true); return false; }
                 if (sz <= 0 || sha.length() != 64) throw new IOException("size/sha256");
                 long need = sz * 2 + 32L * 1024 * 1024;   // zip + extraido + folga
-                if (getCacheDir().getUsableSpace() < need) { setStatus(I18n.f("no_space", size(need)), true); return; }
+                if (getCacheDir().getUsableSpace() < need) { setStatus(I18n.f("no_space", size(need)), true); return false; }
 
                 download(url, zip, sz, sha);
-                if (!zip.exists()) return;   // erro ja mostrado
+                if (!zip.exists()) return false;   // erro ja mostrado
 
                 setStatus(I18n.s("extracting"), false);
                 indeterminate();
@@ -515,7 +540,7 @@ public class MainActivity extends Activity {
                 } catch (IOException e) {
                     rmrf(work);
                     setStatus(I18n.f("bad_package", msg(e)), true);
-                    return;
+                    return false;
                 } finally {
                     zip.delete();
                 }
@@ -528,7 +553,7 @@ public class MainActivity extends Activity {
                         + " && (restorecon -R " + D + " 2>/dev/null; true)";
                 int rc = Root.run(prep, this::logLine);
                 rmrf(work);
-                if (rc != 0) { setStatus(I18n.f("apply_failed", rc), true); return; }
+                if (rc != 0) { setStatus(I18n.f("apply_failed", rc), true); return false; }
 
                 setStatus(I18n.s("applying"), false);
                 logLine("$ sh " + OTA_DIR + "/apply.sh " + OTA_DIR);
@@ -541,19 +566,15 @@ public class MainActivity extends Activity {
                 } finally {
                     full.close();
                 }
-                if (rc == 0) {
-                    setStatus(I18n.s("applied"), false);
-                    ui.post(() -> { restartBtn.setVisibility(View.VISIBLE); list.removeAllViews(); restartBtn.requestFocus(); });
-                } else {
-                    setStatus(I18n.f("apply_failed", rc), true);
-                }
-            } catch (Exception e) {
-                setStatus(I18n.f("error", msg(e)), true);
-            } finally {
-                zip.delete();
-                setBusy(false);
-            }
-        });
+                if (rc == 0) { setStatus(I18n.s("applied"), false); return true; }
+                setStatus(I18n.f("apply_failed", rc), true);
+                return false;
+        } catch (Exception e) {
+            setStatus(I18n.f("error", msg(e)), true);
+            return false;
+        } finally {
+            new File(getCacheDir(), "ota.zip").delete();
+        }
     }
 
     /** Transfere e verifica tamanho + sha256; em erro mostra-o e apaga o ficheiro. Corre em background. */
@@ -626,26 +647,36 @@ public class MainActivity extends Activity {
                 .show();
     }
 
-    @SuppressWarnings("deprecation")
     private void installApp(String label, JSONObject a) {
+        clearLog();
+        setBusy(true);
+        io.execute(() -> {
+            try {
+                if (appWork(label, a)) ui.post(() -> { refreshInfo(); list.removeAllViews(); checkBtn.requestFocus(); });
+            } finally {
+                setBusy(false);
+            }
+        });
+    }
+
+    /** Transfere, verifica e instala um APK com root (thread io). true = instalado. */
+    @SuppressWarnings("deprecation")
+    private boolean appWork(String label, JSONObject a) {
         final String pkg = a.optString("package", "");
         final String url = a.optString("url", "");
         final long sz = a.optLong("size", 0);
         final String sha = a.optString("sha256", "").toLowerCase();
-        clearLog();
-        setBusy(true);
-        io.execute(() -> {
+        try {
             File apk = new File(getCacheDir(), "app.apk");
-            try {
-                if (!Root.available()) { setStatus(I18n.s("no_root"), true); return; }
+                if (!Root.available()) { setStatus(I18n.s("no_root"), true); return false; }
                 if (sz <= 0 || sha.length() != 64) throw new IOException("size/sha256");
                 download(url, apk, sz, sha);
-                if (!apk.exists()) return;
+                if (!apk.exists()) return false;
                 // O APK tem de ser do pacote anunciado.
                 PackageInfo pi = getPackageManager().getPackageArchiveInfo(apk.getAbsolutePath(), 0);
                 if (pi == null || !pkg.equals(pi.packageName)) {
                     setStatus(I18n.f("bad_package", pi == null ? "apk?" : pi.packageName), true);
-                    return;
+                    return false;
                 }
                 setStatus(I18n.f("installing_app", label), false);
                 indeterminate();
@@ -656,16 +687,90 @@ public class MainActivity extends Activity {
                         l -> { logLine(l); out.append(l).append('\n'); });
                 if (rc == 0 && out.toString().contains("Success")) {
                     setStatus(I18n.f("app_ok", label), false);
-                    ui.post(() -> { refreshInfo(); list.removeAllViews(); checkBtn.requestFocus(); });
-                } else {
-                    setStatus(I18n.f("app_fail", label, out.toString().trim()), true);
+                    return true;
                 }
-            } catch (Exception e) {
-                setStatus(I18n.f("error", msg(e)), true);
+                setStatus(I18n.f("app_fail", label, out.toString().trim()), true);
+                return false;
+        } catch (Exception e) {
+            setStatus(I18n.f("error", msg(e)), true);
+            return false;
+        } finally {
+            new File(getCacheDir(), "app.apk").delete();
+        }
+    }
+
+    // ------------------------------------------------------------------ atualizar tudo (1.5)
+
+    /** Pendentes da ultima pesquisa (UI thread): apps e o delta de firmware. */
+    private final java.util.ArrayList<Object[]> pendApps = new java.util.ArrayList<>();
+    private Object[] pendFw;   // {nome, versao, delta}
+
+    private void confirmAll() {
+        StringBuilder m = new StringBuilder();
+        for (Object[] p : pendApps) m.append("• ").append(p[0]).append('\n');
+        if (pendFw != null) m.append("• ").append(I18n.s("firmware")).append(' ').append(pendFw[0]).append('\n');
+        if (pendFw != null) m.append('\n').append(I18n.s("confirm_fw_msg"));
+        dialog().setTitle(I18n.s("update_all"))
+                .setMessage(m.toString())
+                .setNegativeButton(I18n.s("cancel"), null)
+                .setPositiveButton(I18n.s("install"), (x, w) -> installAll())
+                .show();
+    }
+
+    /**
+     * Ordem: outras apps -> firmware -> o proprio updater por ultimo (a instalacao dele termina este processo:
+     * corre num shell root destacado que, no fim, reinicia a box se o firmware foi aplicado, ou reabre o updater).
+     */
+    private void installAll() {
+        final java.util.ArrayList<Object[]> appsQ = new java.util.ArrayList<>(pendApps);
+        final Object[] fwQ = pendFw;
+        clearLog();
+        setBusy(true);
+        io.execute(() -> {
+            boolean fwOk = false, allOk = true;
+            Object[] self = null;
+            try {
+                for (Object[] p : appsQ) {
+                    JSONObject a = (JSONObject) p[1];
+                    if (getPackageName().equals(a.optString("package"))) { self = p; continue; }
+                    allOk &= appWork((String) p[0], a);
+                }
+                if (fwQ != null) { fwOk = fwWork((Integer) fwQ[1], (JSONObject) fwQ[2]); allOk &= fwOk; }
+                if (self != null) allOk &= selfUpdate((JSONObject) self[1], fwOk);
             } finally {
-                apk.delete();
                 setBusy(false);
             }
+            final boolean fo = fwOk, ok = allOk;
+            ui.post(() -> {
+                if (fo) showRestart();
+                else { refreshInfo(); list.removeAllViews(); checkBtn.requestFocus(); }
+                if (ok && !fo) setStatus(I18n.s("all_done"), false);
+            });
         });
+    }
+
+    /** Atualiza o proprio updater num shell root destacado (sobrevive ao fim deste processo). */
+    private boolean selfUpdate(JSONObject a, boolean reboot) {
+        final String url = a.optString("url", "");
+        final long sz = a.optLong("size", 0);
+        final String sha = a.optString("sha256", "").toLowerCase();
+        File apk = new File(getCacheDir(), "self.apk");
+        try {
+            download(url, apk, sz, sha);
+            if (!apk.exists()) return false;
+            PackageInfo pi = getPackageManager().getPackageArchiveInfo(apk.getAbsolutePath(), 0);
+            if (pi == null || !getPackageName().equals(pi.packageName)) return false;
+            String T = Root.q(APK_TMP);
+            String after = reboot ? "setprop sys.powerctl reboot"
+                                  : "am start -a android.settings.SYSTEM_UPDATE_SETTINGS";
+            setStatus(reboot ? I18n.s("self_then_reboot") : I18n.s("self_then_reopen"), false);
+            int rc = Root.run("cp " + Root.q(apk.getAbsolutePath()) + " " + T + " && chmod 644 " + T
+                    + " && (nohup sh -c 'sleep 2; pm install -r " + T + "; rm -f " + T + "; " + after
+                    + "' >/dev/null 2>&1 &)", this::logLine);
+            return rc == 0;
+        } catch (Exception e) {
+            setStatus(I18n.f("error", msg(e)), true);
+            return false;
+        }
     }
 }

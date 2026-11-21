@@ -44,11 +44,11 @@
     },
     {
       "package": "pt.a95xz2.updater",
-      "versionCode": 5,
-      "versionName": "1.4",
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v7/A95XZ2-Updater-1.4.apk",
-      "size": 389876,
-      "sha256": "679a7a843c6335836a7414c6455ff4b087d32c4b06460f14299896f773beff91"
+      "versionCode": 6,
+      "versionName": "1.5",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v7/A95XZ2-Updater-1.5.apk",
+      "size": 393972,
+      "sha256": "0b23cbad33f971c5465cfde45365b747f6193cd62c2fd670bd6d4e04de4eeb50"
     },
     {
       "package": "com.dtinfo.tools",
