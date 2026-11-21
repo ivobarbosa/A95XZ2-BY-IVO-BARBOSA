@@ -1,0 +1,133 @@
+add_virtual_keyboard	管理键盘
+advance_settings	Advanced setting
+audio_device	Audio device
+auto_switch_resolution	Automatic switching to the best resolution
+avaliable_bluetooth	Available bluetooth
+avaliable_vpns	Available vpns
+bcsh_cold	cold
+bcsh_reset	reset
+bcsh_sharp	sharp
+bcsh_warm	warm
+bluetooth_device_advanced_profile_header_title	Use for
+bluetooth_device_details	Device settings
+bluetooth_enable_alphanumeric_pin	PIN contains letters or symbols
+bluetooth_paired	Paired devices
+bluetooth_pairing_key_msg	Bluetooth pairing code
+bluetooth_pairing_shares_phonebook	Allow %1$s to access your contacts and call history
+bluetooth_preference_paired_dialog_name_label	Name
+bluetooth_received	Display received files
+bluetooth_refresh	Refresh
+bluetooth_rename	Rename
+bluetooth_tether_checkbox_text	Bluetooth tethering
+brightness	Brightness
+color	Color
+contrast	Contrast
+cpu_model	cpu curFrq:
+cpu_temp	cpu temperature:
+cpu_usage	cpu usage:
+create_vpn	Create VPN
+credentials_password_too_short	The password must have at least 8 characters.
+default_launcher	Default Launcher
+device_bit_stream	Decode & BitStream
+display	Display
+display_category_title	Display
+display_devices	Display devices
+edit	Edit
+enable_abc	Android bug collector
+enable_abc_summary	Save recent boot logs in /data/logs
+enable_internet_adb	Internet Adb
+enable_internet_adb_summary	enabled internet adb
+enable_usb	USB settings
+enable_usb_summary	Set the USB connection status
+fixed_rotation	Fixed rotation
+formats	Formats
+go_to_loader	Go to Loader
+hdmi_rotation	Rotation
+hide_bar	System Bar Hide
+hotspot_name	Hotspot
+keyboard_and_input_methods_category	Keyboard & inputs
+keyboard_assistance_category	Keyboard assistance
+keyboard_layout_dialog_switch_hint	To switch, press Control-Spacebar
+keyboard_shortcuts_helper	Keyboard shortcuts helper
+keyboard_shortcuts_helper_summary	Display available shortcuts
+max_brightness	Max brightness
+mem_section	Device Momery
+min_brightness	Min brightness
+network_mac	wifi mac:
+network_mac2	ethernet mac:
+network_speed	net speed:
+network_title	Network:
+no_button	Cancel
+ok_button	Save
+pair_connected	remote is connected
+pair_searching	Searching
+performance_float	Performance Dialog
+physical_keyboard_title	Physical keyboard
+power_key	Power Key
+power_key_definition	Power Key Definition
+progress_scanning	Searching
+ram_total	ram total:
+ram_usage	sys ram free:
+resolution	Resolution
+resolution_list	The list of resolution
+saturation	Saturation
+select_img_to_flash	"Select Image to Flash
+show_ime	Show virtual keyboard
+show_ime_summary	Keep it on screen while physical keyboard is active
+tone	Tone
+usb_tethering_button_text	USB tethering
+virtual_keyboard_category	Virtual keyboard
+vpn_dns_servers	DNS servers (e.g. 8.8.8.8)
+vpn_forget	Forget
+vpn_ipsec_ca_cert	IPSec CA certificate
+vpn_ipsec_identifier	IPSec identifier
+vpn_ipsec_secret	IPSec pre-shared key
+vpn_ipsec_server_cert	IPSec server certificate
+vpn_ipsec_user_cert	IPSec user certificate
+vpn_l2tp_secret	L2TP secret
+vpn_menu_lockdown	Always-on VPN
+vpn_mppe	PPP encryption (MPPE)
+vpn_name	Name
+vpn_not_used	(not used)
+vpn_password	Password
+vpn_routes	Forwarding routes (e.g. 10.0.0.0/8)
+vpn_save_login	Save account information
+vpn_search_domains	DNS search domains
+vpn_server	Server address
+vpn_show_options	Show advanced options
+vpn_type	Type
+vpn_username	Username
+wifi_ap_band_config	Select AP Band
+wifi_password	Password
+wifi_security	Security
+wifi_show_password	Show password
+wifi_ssid	Network name
+wifi_ssid_hint	Enter the SSID
+wifi_tether_checkbox_text	Portable Wi‑Fi hotspot
+wifi_tether_configure_ap_text	Set up Wi‑Fi hotspot
+ugoos_pref_category_title	More Settings
+ugoos_hardware_monitor	Hardware Monitor
+ugoos_hardware_monitor_category_title	Hardware Monitor
+ugoos_hardware_monitor_cpu_and_ram_category_title	CPU & RAM
+ugoos_hardware_monitor_network_category_title	Network
+ugoos_hardware_monitor_other_category_title	other
+ugoos_hardware_monitor_show_cpu_freq	Show CPU frequency
+ugoos_hardware_monitor_show_cpu_freq_summary	Displays the current CPU frequency in the status bar
+ugoos_hardware_monitor_show_cpu_load	Show CPU load
+ugoos_hardware_monitor_show_cpu_load_summary	Displays the current CPU load in the status bar
+ugoos_hardware_monitor_show_cpu_temperature	Show CPU Temperature
+ugoos_hardware_monitor_show_cpu_temperature_summary	Displays the current CPU temperature in the status bar
+ugoos_hardware_monitor_show_display_mode	Show display mode
+ugoos_hardware_monitor_show_display_mode_summary	Displays the current display mode in the status bar
+ugoos_hardware_monitor_show_ip_address	Show IP Address
+ugoos_hardware_monitor_show_ip_address_summary	Displays local IP address in the status bar
+ugoos_hardware_monitor_show_mac_address	Show MAC Address
+ugoos_hardware_monitor_show_mac_address_summary	Displays MAC of the current network in the status bar
+ugoos_hardware_monitor_show_network_usage	Show Network Usage
+ugoos_hardware_monitor_show_network_usage_summary	Displays information about the current download and upload speed
+ugoos_hardware_monitor_show_ram	Show information about load RAM
+ugoos_hardware_monitor_show_ram_summary	Displays information about the current load and total available RAM
+ugoos_hardware_monitor_show_text_values	Show text values
+ugoos_hardware_monitor_show_text_values_summary	Displays text values and icons
+ugoos_root_switch	Install root
+ugoos_system_bars	System bars

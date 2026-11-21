@@ -1,31 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ugoos_hardware_monitor">Hardware Monitor</string>
-    <string name="ugoos_hardware_monitor_category_title">Hardware Monitor</string>
-    <string name="ugoos_hardware_monitor_cpu_and_ram_category_title">CPU &amp; RAM</string>
-    <string name="ugoos_hardware_monitor_network_category_title">Network</string>
-    <string name="ugoos_hardware_monitor_other_category_title">other</string>
-    <string name="ugoos_hardware_monitor_show_cpu_freq">Show CPU frequency</string>
-    <string name="ugoos_hardware_monitor_show_cpu_freq_summary">Displays the current CPU frequency in the status bar</string>
-    <string name="ugoos_hardware_monitor_show_cpu_load">Show CPU load</string>
-    <string name="ugoos_hardware_monitor_show_cpu_load_summary">Displays the current CPU load in the status bar</string>
-    <string name="ugoos_hardware_monitor_show_cpu_temperature">Show CPU Temperature</string>
-    <string name="ugoos_hardware_monitor_show_cpu_temperature_summary">Displays the current CPU temperature in the status bar</string>
-    <string name="ugoos_hardware_monitor_show_display_mode">Show display mode</string>
-    <string name="ugoos_hardware_monitor_show_display_mode_summary">Displays the current display mode in the status bar</string>
-    <string name="ugoos_hardware_monitor_show_ip_address">Show IP Address</string>
-    <string name="ugoos_hardware_monitor_show_ip_address_summary">Displays local IP address in the status bar</string>
-    <string name="ugoos_hardware_monitor_show_mac_address">Show MAC Address</string>
-    <string name="ugoos_hardware_monitor_show_mac_address_summary">Displays MAC of the current network in the status bar</string>
-    <string name="ugoos_hardware_monitor_show_network_usage">Show Network Usage</string>
-    <string name="ugoos_hardware_monitor_show_network_usage_summary">Displays information about the current download and upload speed</string>
-    <string name="ugoos_hardware_monitor_show_ram">Show information about load RAM</string>
-    <string name="ugoos_hardware_monitor_show_ram_summary">Displays information about the current load and total available RAM</string>
-    <string name="ugoos_hardware_monitor_show_text_values">Show text values</string>
-    <string name="ugoos_hardware_monitor_show_text_values_summary">Displays text values and icons</string>
-    <string name="ugoos_pref_category_title">More Settings</string>
-    <string name="ugoos_root">ROOT</string>
-    <string name="ugoos_root_category_title">ROOT</string>
-    <string name="ugoos_root_switch">Install root</string>
-    <string name="ugoos_system_bars">System bars</string>
+    <string name="add_virtual_keyboard" formatted="false">管理键盘</string>
+    <string name="advance_settings" formatted="false">Advanced setting</string>
+    <string name="audio_device" formatted="false">Audio device</string>
+    <string name="auto_switch_resolution" formatted="false">Automatic switching to the best resolution</string>
+    <string name="avaliable_bluetooth" formatted="false">Available bluetooth</string>
+    <string name="avaliable_vpns" formatted="false">Available vpns</string>
+    <string name="bcsh_cold" formatted="false">cold</string>
+    <string name="bcsh_reset" formatted="false">reset</string>
+    <string name="bcsh_sharp" formatted="false">sharp</string>
+    <string name="bcsh_warm" formatted="false">warm</string>
+    <string name="bluetooth_device_advanced_profile_header_title" formatted="false">Use for</string>
+    <string name="bluetooth_device_details" formatted="false">Device settings</string>
+    <string name="bluetooth_enable_alphanumeric_pin" formatted="false">PIN contains letters or symbols</string>
+    <string name="bluetooth_paired" formatted="false">Paired devices</string>
+    <string name="bluetooth_pairing_key_msg" formatted="false">Bluetooth pairing code</string>
+    <string name="bluetooth_pairing_shares_phonebook" formatted="false">Allow %1$s to access your contacts and call history</string>
+    <string name="bluetooth_preference_paired_dialog_name_label" formatted="false">Name</string>
+    <string name="bluetooth_received" formatted="false">Display received files</string>
+    <string name="bluetooth_refresh" formatted="false">Refresh</string>
+    <string name="bluetooth_rename" formatted="false">Rename</string>
+    <string name="bluetooth_tether_checkbox_text" formatted="false">Bluetooth tethering</string>
+    <string name="brightness" formatted="false">Brightness</string>
+    <string name="color" formatted="false">Color</string>
+    <string name="contrast" formatted="false">Contrast</string>
+    <string name="cpu_model" formatted="false">cpu curFrq:</string>
+    <string name="cpu_temp" formatted="false">cpu temperature:</string>
+    <string name="cpu_usage" formatted="false">cpu usage:</string>
+    <string name="create_vpn" formatted="false">Create VPN</string>
+    <string name="credentials_password_too_short" formatted="false">The password must have at least 8 characters.</string>
+    <string name="default_launcher" formatted="false">Default Launcher</string>
+    <string name="device_bit_stream" formatted="false">Decode &amp; BitStream</string>
+    <string name="display" formatted="false">Display</string>
+    <string name="display_category_title" formatted="false">Display</string>
+    <string name="display_devices" formatted="false">Display devices</string>
+    <string name="edit" formatted="false">Edit</string>
+    <string name="enable_abc" formatted="false">Android bug collector</string>
+    <string name="enable_abc_summary" formatted="false">Save recent boot logs in /data/logs</string>
+    <string name="enable_internet_adb" formatted="false">Internet Adb</string>
+    <string name="enable_internet_adb_summary" formatted="false">enabled internet adb</string>
+    <string name="enable_usb" formatted="false">USB settings</string>
+    <string name="enable_usb_summary" formatted="false">Set the USB connection status</string>
+    <string name="fixed_rotation" formatted="false">Fixed rotation</string>
+    <string name="formats" formatted="false">Formats</string>
+    <string name="go_to_loader" formatted="false">Go to Loader</string>
+    <string name="hdmi_rotation" formatted="false">Rotation</string>
+    <string name="hide_bar" formatted="false">System Bar Hide</string>
+    <string name="hotspot_name" formatted="false">Hotspot</string>
+    <string name="keyboard_and_input_methods_category" formatted="false">Keyboard &amp; inputs</string>
+    <string name="keyboard_assistance_category" formatted="false">Keyboard assistance</string>
+    <string name="keyboard_layout_dialog_switch_hint" formatted="false">To switch, press Control-Spacebar</string>
+    <string name="keyboard_shortcuts_helper" formatted="false">Keyboard shortcuts helper</string>
+    <string name="keyboard_shortcuts_helper_summary" formatted="false">Display available shortcuts</string>
+    <string name="max_brightness" formatted="false">Max brightness</string>
+    <string name="mem_section" formatted="false">Device Momery</string>
+    <string name="min_brightness" formatted="false">Min brightness</string>
+    <string name="network_mac" formatted="false">wifi mac:</string>
+    <string name="network_mac2" formatted="false">ethernet mac:</string>
+    <string name="network_speed" formatted="false">net speed:</string>
+    <string name="network_title" formatted="false">Network:</string>
+    <string name="no_button" formatted="false">Cancel</string>
+    <string name="ok_button" formatted="false">Save</string>
+    <string name="pair_connected" formatted="false">remote is connected</string>
+    <string name="pair_searching" formatted="false">Searching</string>
+    <string name="performance_float" formatted="false">Performance Dialog</string>
+    <string name="physical_keyboard_title" formatted="false">Physical keyboard</string>
+    <string name="power_key" formatted="false">Power Key</string>
+    <string name="power_key_definition" formatted="false">Power Key Definition</string>
+    <string name="progress_scanning" formatted="false">Searching</string>
+    <string name="ram_total" formatted="false">ram total:</string>
+    <string name="ram_usage" formatted="false">sys ram free:</string>
+    <string name="resolution" formatted="false">Resolution</string>
+    <string name="resolution_list" formatted="false">The list of resolution</string>
+    <string name="saturation" formatted="false">Saturation</string>
+    <string name="select_img_to_flash" formatted="false">\"Select Image to Flash</string>
+    <string name="show_ime" formatted="false">Show virtual keyboard</string>
+    <string name="show_ime_summary" formatted="false">Keep it on screen while physical keyboard is active</string>
+    <string name="tone" formatted="false">Tone</string>
+    <string name="usb_tethering_button_text" formatted="false">USB tethering</string>
+    <string name="virtual_keyboard_category" formatted="false">Virtual keyboard</string>
+    <string name="vpn_dns_servers" formatted="false">DNS servers (e.g. 8.8.8.8)</string>
+    <string name="vpn_forget" formatted="false">Forget</string>
+    <string name="vpn_ipsec_ca_cert" formatted="false">IPSec CA certificate</string>
+    <string name="vpn_ipsec_identifier" formatted="false">IPSec identifier</string>
+    <string name="vpn_ipsec_secret" formatted="false">IPSec pre-shared key</string>
+    <string name="vpn_ipsec_server_cert" formatted="false">IPSec server certificate</string>
+    <string name="vpn_ipsec_user_cert" formatted="false">IPSec user certificate</string>
+    <string name="vpn_l2tp_secret" formatted="false">L2TP secret</string>
+    <string name="vpn_menu_lockdown" formatted="false">Always-on VPN</string>
+    <string name="vpn_mppe" formatted="false">PPP encryption (MPPE)</string>
+    <string name="vpn_name" formatted="false">Name</string>
+    <string name="vpn_not_used" formatted="false">(not used)</string>
+    <string name="vpn_password" formatted="false">Password</string>
+    <string name="vpn_routes" formatted="false">Forwarding routes (e.g. 10.0.0.0/8)</string>
+    <string name="vpn_save_login" formatted="false">Save account information</string>
+    <string name="vpn_search_domains" formatted="false">DNS search domains</string>
+    <string name="vpn_server" formatted="false">Server address</string>
+    <string name="vpn_show_options" formatted="false">Show advanced options</string>
+    <string name="vpn_type" formatted="false">Type</string>
+    <string name="vpn_username" formatted="false">Username</string>
+    <string name="wifi_ap_band_config" formatted="false">Select AP Band</string>
+    <string name="wifi_password" formatted="false">Password</string>
+    <string name="wifi_security" formatted="false">Security</string>
+    <string name="wifi_show_password" formatted="false">Show password</string>
+    <string name="wifi_ssid" formatted="false">Network name</string>
+    <string name="wifi_ssid_hint" formatted="false">Enter the SSID</string>
+    <string name="wifi_tether_checkbox_text" formatted="false">Portable Wi‑Fi hotspot</string>
+    <string name="wifi_tether_configure_ap_text" formatted="false">Set up Wi‑Fi hotspot</string>
+    <string name="ugoos_pref_category_title" formatted="false">More Settings</string>
+    <string name="ugoos_hardware_monitor" formatted="false">Hardware Monitor</string>
+    <string name="ugoos_hardware_monitor_category_title" formatted="false">Hardware Monitor</string>
+    <string name="ugoos_hardware_monitor_cpu_and_ram_category_title" formatted="false">CPU &amp; RAM</string>
+    <string name="ugoos_hardware_monitor_network_category_title" formatted="false">Network</string>
+    <string name="ugoos_hardware_monitor_other_category_title" formatted="false">other</string>
+    <string name="ugoos_hardware_monitor_show_cpu_freq" formatted="false">Show CPU frequency</string>
+    <string name="ugoos_hardware_monitor_show_cpu_freq_summary" formatted="false">Displays the current CPU frequency in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_cpu_load" formatted="false">Show CPU load</string>
+    <string name="ugoos_hardware_monitor_show_cpu_load_summary" formatted="false">Displays the current CPU load in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_cpu_temperature" formatted="false">Show CPU Temperature</string>
+    <string name="ugoos_hardware_monitor_show_cpu_temperature_summary" formatted="false">Displays the current CPU temperature in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_display_mode" formatted="false">Show display mode</string>
+    <string name="ugoos_hardware_monitor_show_display_mode_summary" formatted="false">Displays the current display mode in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_ip_address" formatted="false">Show IP Address</string>
+    <string name="ugoos_hardware_monitor_show_ip_address_summary" formatted="false">Displays local IP address in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_mac_address" formatted="false">Show MAC Address</string>
+    <string name="ugoos_hardware_monitor_show_mac_address_summary" formatted="false">Displays MAC of the current network in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_network_usage" formatted="false">Show Network Usage</string>
+    <string name="ugoos_hardware_monitor_show_network_usage_summary" formatted="false">Displays information about the current download and upload speed</string>
+    <string name="ugoos_hardware_monitor_show_ram" formatted="false">Show information about load RAM</string>
+    <string name="ugoos_hardware_monitor_show_ram_summary" formatted="false">Displays information about the current load and total available RAM</string>
+    <string name="ugoos_hardware_monitor_show_text_values" formatted="false">Show text values</string>
+    <string name="ugoos_hardware_monitor_show_text_values_summary" formatted="false">Displays text values and icons</string>
+    <string name="ugoos_root_switch" formatted="false">Install root</string>
+    <string name="ugoos_system_bars" formatted="false">System bars</string>
 </resources>

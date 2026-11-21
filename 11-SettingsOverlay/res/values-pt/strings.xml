@@ -1,31 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ugoos_pref_category_title">Mais definições</string>
-    <string name="ugoos_hardware_monitor">Monitor de hardware</string>
-    <string name="ugoos_hardware_monitor_category_title">Monitor de hardware</string>
-    <string name="ugoos_hardware_monitor_cpu_and_ram_category_title">CPU e RAM</string>
-    <string name="ugoos_hardware_monitor_network_category_title">Rede</string>
-    <string name="ugoos_hardware_monitor_other_category_title">Outros</string>
-    <string name="ugoos_hardware_monitor_show_cpu_freq">Mostrar frequência do CPU</string>
-    <string name="ugoos_hardware_monitor_show_cpu_freq_summary">Mostra a frequência atual do CPU na barra de estado</string>
-    <string name="ugoos_hardware_monitor_show_cpu_load">Mostrar carga do CPU</string>
-    <string name="ugoos_hardware_monitor_show_cpu_load_summary">Mostra a carga atual do CPU na barra de estado</string>
-    <string name="ugoos_hardware_monitor_show_cpu_temperature">Mostrar temperatura do CPU</string>
-    <string name="ugoos_hardware_monitor_show_cpu_temperature_summary">Mostra a temperatura atual do CPU na barra de estado</string>
-    <string name="ugoos_hardware_monitor_show_display_mode">Mostrar modo de ecrã</string>
-    <string name="ugoos_hardware_monitor_show_display_mode_summary">Mostra o modo de ecrã atual na barra de estado</string>
-    <string name="ugoos_hardware_monitor_show_ip_address">Mostrar endereço IP</string>
-    <string name="ugoos_hardware_monitor_show_ip_address_summary">Mostra o endereço IP local na barra de estado</string>
-    <string name="ugoos_hardware_monitor_show_mac_address">Mostrar endereço MAC</string>
-    <string name="ugoos_hardware_monitor_show_mac_address_summary">Mostra o MAC da rede atual na barra de estado</string>
-    <string name="ugoos_hardware_monitor_show_network_usage">Mostrar uso da rede</string>
-    <string name="ugoos_hardware_monitor_show_network_usage_summary">Mostra a velocidade atual de transferência e envio</string>
-    <string name="ugoos_hardware_monitor_show_ram">Mostrar uso da RAM</string>
-    <string name="ugoos_hardware_monitor_show_ram_summary">Mostra a RAM em uso e a RAM total disponível</string>
-    <string name="ugoos_hardware_monitor_show_text_values">Mostrar valores em texto</string>
-    <string name="ugoos_hardware_monitor_show_text_values_summary">Mostra valores em texto e ícones</string>
-    <string name="ugoos_root">ROOT</string>
-    <string name="ugoos_root_category_title">ROOT</string>
-    <string name="ugoos_root_switch">Instalar root</string>
-    <string name="ugoos_system_bars">Barras do sistema</string>
+    <string name="add_virtual_keyboard" formatted="false">Gerir teclados</string>
+    <string name="advance_settings" formatted="false">Definições avançadas</string>
+    <string name="audio_device" formatted="false">Dispositivo de áudio</string>
+    <string name="auto_switch_resolution" formatted="false">Mudar automaticamente para a melhor resolução</string>
+    <string name="avaliable_bluetooth" formatted="false">Bluetooth disponível</string>
+    <string name="avaliable_vpns" formatted="false">VPN disponíveis</string>
+    <string name="bcsh_cold" formatted="false">Frio</string>
+    <string name="bcsh_reset" formatted="false">Repor</string>
+    <string name="bcsh_sharp" formatted="false">Nítido</string>
+    <string name="bcsh_warm" formatted="false">Quente</string>
+    <string name="bluetooth_device_advanced_profile_header_title" formatted="false">Utilizar para</string>
+    <string name="bluetooth_device_details" formatted="false">Definições do dispositivo</string>
+    <string name="bluetooth_enable_alphanumeric_pin" formatted="false">O PIN contém letras ou símbolos</string>
+    <string name="bluetooth_paired" formatted="false">Dispositivos sincronizados</string>
+    <string name="bluetooth_pairing_key_msg" formatted="false">Código de sincronização Bluetooth</string>
+    <string name="bluetooth_pairing_shares_phonebook" formatted="false">Permitir que %1$s aceda aos contactos e ao histórico de chamadas</string>
+    <string name="bluetooth_preference_paired_dialog_name_label" formatted="false">Nome</string>
+    <string name="bluetooth_received" formatted="false">Mostrar ficheiros recebidos</string>
+    <string name="bluetooth_refresh" formatted="false">Atualizar</string>
+    <string name="bluetooth_rename" formatted="false">Mudar o nome</string>
+    <string name="bluetooth_tether_checkbox_text" formatted="false">Partilha de Internet por Bluetooth</string>
+    <string name="brightness" formatted="false">Brilho</string>
+    <string name="color" formatted="false">Cor</string>
+    <string name="contrast" formatted="false">Contraste</string>
+    <string name="cpu_model" formatted="false">Frequência do CPU:</string>
+    <string name="cpu_temp" formatted="false">Temperatura do CPU:</string>
+    <string name="cpu_usage" formatted="false">Uso do CPU:</string>
+    <string name="create_vpn" formatted="false">Criar VPN</string>
+    <string name="credentials_password_too_short" formatted="false">A palavra-passe tem de ter pelo menos 8 carateres.</string>
+    <string name="default_launcher" formatted="false">Ecrã inicial predefinido</string>
+    <string name="device_bit_stream" formatted="false">Descodificação e bitstream</string>
+    <string name="display" formatted="false">Ecrã</string>
+    <string name="display_category_title" formatted="false">Ecrã</string>
+    <string name="display_devices" formatted="false">Dispositivos de visualização</string>
+    <string name="edit" formatted="false">Editar</string>
+    <string name="enable_abc" formatted="false">Recolha de erros do Android</string>
+    <string name="enable_abc_summary" formatted="false">Guardar os registos dos arranques recentes em /data/logs</string>
+    <string name="enable_internet_adb" formatted="false">ADB pela rede</string>
+    <string name="enable_internet_adb_summary" formatted="false">ADB pela rede ativo</string>
+    <string name="enable_usb" formatted="false">Definições USB</string>
+    <string name="enable_usb_summary" formatted="false">Definir o modo da ligação USB</string>
+    <string name="fixed_rotation" formatted="false">Rotação fixa</string>
+    <string name="formats" formatted="false">Formatos</string>
+    <string name="go_to_loader" formatted="false">Entrar no modo Loader</string>
+    <string name="hdmi_rotation" formatted="false">Rotação</string>
+    <string name="hide_bar" formatted="false">Ocultar barra do sistema</string>
+    <string name="hotspot_name" formatted="false">Ponto de acesso</string>
+    <string name="keyboard_and_input_methods_category" formatted="false">Teclado e entradas</string>
+    <string name="keyboard_assistance_category" formatted="false">Assistência do teclado</string>
+    <string name="keyboard_layout_dialog_switch_hint" formatted="false">Para mudar, prima Control-Espaço</string>
+    <string name="keyboard_shortcuts_helper" formatted="false">Ajuda de atalhos de teclado</string>
+    <string name="keyboard_shortcuts_helper_summary" formatted="false">Mostrar os atalhos disponíveis</string>
+    <string name="max_brightness" formatted="false">Brilho máximo</string>
+    <string name="mem_section" formatted="false">Memória do dispositivo</string>
+    <string name="min_brightness" formatted="false">Brilho mínimo</string>
+    <string name="network_mac" formatted="false">MAC Wi-Fi:</string>
+    <string name="network_mac2" formatted="false">MAC Ethernet:</string>
+    <string name="network_speed" formatted="false">Velocidade da rede:</string>
+    <string name="network_title" formatted="false">Rede:</string>
+    <string name="no_button" formatted="false">Cancelar</string>
+    <string name="ok_button" formatted="false">Guardar</string>
+    <string name="pair_connected" formatted="false">O comando está ligado</string>
+    <string name="pair_searching" formatted="false">A procurar</string>
+    <string name="performance_float" formatted="false">Janela de desempenho</string>
+    <string name="physical_keyboard_title" formatted="false">Teclado físico</string>
+    <string name="power_key" formatted="false">Tecla de energia</string>
+    <string name="power_key_definition" formatted="false">Função da tecla de energia</string>
+    <string name="progress_scanning" formatted="false">A procurar</string>
+    <string name="ram_total" formatted="false">RAM total:</string>
+    <string name="ram_usage" formatted="false">RAM livre:</string>
+    <string name="resolution" formatted="false">Resolução</string>
+    <string name="resolution_list" formatted="false">Lista de resoluções</string>
+    <string name="saturation" formatted="false">Saturação</string>
+    <string name="select_img_to_flash" formatted="false">Selecionar imagem para gravar</string>
+    <string name="show_ime" formatted="false">Mostrar teclado virtual</string>
+    <string name="show_ime_summary" formatted="false">Manter no ecrã enquanto o teclado físico estiver ativo</string>
+    <string name="tone" formatted="false">Tonalidade</string>
+    <string name="usb_tethering_button_text" formatted="false">Partilha de Internet por USB</string>
+    <string name="virtual_keyboard_category" formatted="false">Teclado virtual</string>
+    <string name="vpn_dns_servers" formatted="false">Servidores DNS (ex.: 8.8.8.8)</string>
+    <string name="vpn_forget" formatted="false">Esquecer</string>
+    <string name="vpn_ipsec_ca_cert" formatted="false">Certificado da AC IPSec</string>
+    <string name="vpn_ipsec_identifier" formatted="false">Identificador IPSec</string>
+    <string name="vpn_ipsec_secret" formatted="false">Chave IPSec pré-partilhada</string>
+    <string name="vpn_ipsec_server_cert" formatted="false">Certificado do servidor IPSec</string>
+    <string name="vpn_ipsec_user_cert" formatted="false">Certificado do utilizador IPSec</string>
+    <string name="vpn_l2tp_secret" formatted="false">Segredo L2TP</string>
+    <string name="vpn_menu_lockdown" formatted="false">VPN sempre ativa</string>
+    <string name="vpn_mppe" formatted="false">Encriptação PPP (MPPE)</string>
+    <string name="vpn_name" formatted="false">Nome</string>
+    <string name="vpn_not_used" formatted="false">(não utilizado)</string>
+    <string name="vpn_password" formatted="false">Palavra-passe</string>
+    <string name="vpn_routes" formatted="false">Rotas de encaminhamento (ex.: 10.0.0.0/8)</string>
+    <string name="vpn_save_login" formatted="false">Guardar as informações da conta</string>
+    <string name="vpn_search_domains" formatted="false">Domínios de pesquisa DNS</string>
+    <string name="vpn_server" formatted="false">Endereço do servidor</string>
+    <string name="vpn_show_options" formatted="false">Mostrar opções avançadas</string>
+    <string name="vpn_type" formatted="false">Tipo</string>
+    <string name="vpn_username" formatted="false">Nome de utilizador</string>
+    <string name="wifi_ap_band_config" formatted="false">Selecionar a banda do ponto de acesso</string>
+    <string name="wifi_password" formatted="false">Palavra-passe</string>
+    <string name="wifi_security" formatted="false">Segurança</string>
+    <string name="wifi_show_password" formatted="false">Mostrar palavra-passe</string>
+    <string name="wifi_ssid" formatted="false">Nome da rede</string>
+    <string name="wifi_ssid_hint" formatted="false">Introduza o SSID</string>
+    <string name="wifi_tether_checkbox_text" formatted="false">Ponto de acesso Wi-Fi portátil</string>
+    <string name="wifi_tether_configure_ap_text" formatted="false">Configurar o ponto de acesso Wi-Fi</string>
+    <string name="ugoos_pref_category_title" formatted="false">Mais definições</string>
+    <string name="ugoos_hardware_monitor" formatted="false">Monitor de hardware</string>
+    <string name="ugoos_hardware_monitor_category_title" formatted="false">Monitor de hardware</string>
+    <string name="ugoos_hardware_monitor_cpu_and_ram_category_title" formatted="false">CPU e RAM</string>
+    <string name="ugoos_hardware_monitor_network_category_title" formatted="false">Rede</string>
+    <string name="ugoos_hardware_monitor_other_category_title" formatted="false">Outros</string>
+    <string name="ugoos_hardware_monitor_show_cpu_freq" formatted="false">Mostrar frequência do CPU</string>
+    <string name="ugoos_hardware_monitor_show_cpu_freq_summary" formatted="false">Mostra a frequência atual do CPU na barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_cpu_load" formatted="false">Mostrar carga do CPU</string>
+    <string name="ugoos_hardware_monitor_show_cpu_load_summary" formatted="false">Mostra a carga atual do CPU na barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_cpu_temperature" formatted="false">Mostrar temperatura do CPU</string>
+    <string name="ugoos_hardware_monitor_show_cpu_temperature_summary" formatted="false">Mostra a temperatura atual do CPU na barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_display_mode" formatted="false">Mostrar modo de ecrã</string>
+    <string name="ugoos_hardware_monitor_show_display_mode_summary" formatted="false">Mostra o modo de ecrã atual na barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_ip_address" formatted="false">Mostrar endereço IP</string>
+    <string name="ugoos_hardware_monitor_show_ip_address_summary" formatted="false">Mostra o endereço IP local na barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_mac_address" formatted="false">Mostrar endereço MAC</string>
+    <string name="ugoos_hardware_monitor_show_mac_address_summary" formatted="false">Mostra o MAC da rede atual na barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_network_usage" formatted="false">Mostrar uso da rede</string>
+    <string name="ugoos_hardware_monitor_show_network_usage_summary" formatted="false">Mostra a velocidade atual de transferência e envio</string>
+    <string name="ugoos_hardware_monitor_show_ram" formatted="false">Mostrar uso da RAM</string>
+    <string name="ugoos_hardware_monitor_show_ram_summary" formatted="false">Mostra a RAM em uso e a RAM total disponível</string>
+    <string name="ugoos_hardware_monitor_show_text_values" formatted="false">Mostrar valores em texto</string>
+    <string name="ugoos_hardware_monitor_show_text_values_summary" formatted="false">Mostra valores em texto e ícones</string>
+    <string name="ugoos_root_switch" formatted="false">Instalar root</string>
+    <string name="ugoos_system_bars" formatted="false">Barras do sistema</string>
 </resources>

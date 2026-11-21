@@ -37,7 +37,7 @@ and `openssl`, on Linux or WSL. Run them with `python3 -I <tool>.py` (each file 
 | `build_update.py` | Older same-size variant (legacy) |
 | `superinfo.py` | Read a sparse `super.img`, list dynamic partitions (LP metadata), unsparse |
 | `ext4r.py` | Minimal read-only ext4 reader (lookup, read file, list dirs) |
-| `build_v5.py`, `build_v6.py`, `build_v7.py` | Build each version's `super` from the previous one (v5 also defines `apply.sh`) |
+| `build_v5.py` … `build_v9.py` | Build each version's `super` from the previous one (v5 also defines `apply.sh`) |
 | `mkdelta.py` | Block-level delta between any two versions, with simulation |
 | `mkmanifest.py` | Generate and sign `updates/updates.json` (RSA-SHA256) for the A95X Z2 Updater |
 | `mkhosts.py` | Ad/tracker blocking `hosts` from the AdAway + StevenBlack lists (`hosts-a95xz2` is the result) |
