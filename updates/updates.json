@@ -1,36 +1,42 @@
 {
   "schema": 1,
   "firmware": {
-    "version": 7,
-    "name": "v7",
+    "version": 8,
+    "name": "v8",
     "notes": {
-      "en": "Security: ADB now asks for authorization on screen for every new computer, and network ADB is no longer forced on (toggle it in the launcher: System > ADB debugging over network). Performance: apps are compiled fully ('speed') and Android animations are turned off. Launcher 1.6 and Updater 1.4 included. After restarting, accept 'Allow USB debugging' on the TV if you use ADB.",
-      "pt": "Segurança: o ADB passa a pedir autorização no ecrã para cada computador novo e o ADB por rede deixa de ser forçado (liga-o no launcher: Sistema > Depuração ADB por rede). Desempenho: apps compiladas por inteiro ('speed') e animações do Android desligadas. Inclui o launcher 1.6 e o updater 1.4. Depois de reiniciar, se usas ADB, aceita 'Permitir depuração USB' na TV."
+      "en": "Settings: the 'More Settings' menu is now translated (Portuguese, Spanish, French, German). Updater 1.5 (with 'Update all') included in the firmware.",
+      "pt": "Definições: o menu 'More Settings' passa a estar traduzido ('Mais definições' e os seus textos, também em espanhol, francês e alemão). Inclui o updater 1.5 (com 'Atualizar tudo') no firmware."
     },
     "deltas": [
       {
+        "from": 7,
+        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v8/delta-v7-to-v8.zip",
+        "size": 52918,
+        "sha256": "a720380e23031499d01f1681129d17b02a41e54ba105f12d1cec76fb53961124"
+      },
+      {
         "from": 6,
-        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v7/delta-v6-to-v7.zip",
-        "size": 492407,
-        "sha256": "14ee8c7d9458ad6775faf79bd82a35bd6b2749df28b82a2c185bde4f4574e430"
+        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v8/delta-v6-to-v8.zip",
+        "size": 502181,
+        "sha256": "75fbc020c43a977a4595efc7a44cded3390b3f022037f823531afd650fd87e14"
       },
       {
         "from": 5,
-        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v7/delta-v5-to-v7.zip",
-        "size": 497360,
-        "sha256": "2574cc85b0f5c6ca1171b9590cd6df76802424bbac95fd749128ec3641f0dd2f"
+        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v8/delta-v5-to-v8.zip",
+        "size": 507198,
+        "sha256": "c2aedde3c27402fe3a8712e652ab7fa09ed45a472a9c5c4e5719cdfb95c866c4"
       },
       {
         "from": 4,
-        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v7/delta-v4-to-v7.zip",
-        "size": 499313,
-        "sha256": "996873bc2dd86c6a320a094ef630ea11b01b780f8a773658a9b98766da0f6b6a"
+        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v8/delta-v4-to-v8.zip",
+        "size": 509130,
+        "sha256": "752f538154db7feee1afb3206853d3661b62fa5a66b83805d1a02f62e540003a"
       }
     ],
     "full": {
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v7/update-a95xz2-a10-v7.zip",
-      "size": 951042163,
-      "sha256": "85602a9b5056b1a2cf32fefe38c7007fb56062a8b8f6eabc758fe3b6f0334fab"
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v8/update-a95xz2-a10-v8.zip",
+      "size": 951082304,
+      "sha256": "600ea22b8b09b5785f8e56152d032611b92115b23ef7226344290c9f74abe7d6"
     }
   },
   "apps": [
@@ -38,7 +44,7 @@
       "package": "pt.a95xz2.launcher",
       "versionCode": 7,
       "versionName": "1.6",
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v7/A95XZ2-Home-1.6.apk",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v8/A95XZ2-Home-1.6.apk",
       "size": 209589,
       "sha256": "bd42cbdb3fbda88163d8f20b38ac779a1d34ea23788c9ab17c1651878c943e1a"
     },
@@ -46,7 +52,7 @@
       "package": "pt.a95xz2.updater",
       "versionCode": 6,
       "versionName": "1.5",
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v7/A95XZ2-Updater-1.5.apk",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v8/A95XZ2-Updater-1.5.apk",
       "size": 393972,
       "sha256": "0b23cbad33f971c5465cfde45365b747f6193cd62c2fd670bd6d4e04de4eeb50"
     },
@@ -54,7 +60,7 @@
       "package": "com.dtinfo.tools",
       "versionCode": 1,
       "versionName": "1.0",
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v7/A95XZ2-UpdateShortcut-1.0.apk",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v8/A95XZ2-UpdateShortcut-1.0.apk",
       "size": 12683,
       "sha256": "69ca95e3e6278cd5dde817ab48e28384a9f70e32a0fec539360c5e251964cc08"
     }

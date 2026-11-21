@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ugoos_pref_category_title">Más ajustes</string>
+    <string name="ugoos_hardware_monitor">Monitor de hardware</string>
+    <string name="ugoos_hardware_monitor_category_title">Monitor de hardware</string>
+    <string name="ugoos_hardware_monitor_cpu_and_ram_category_title">CPU y RAM</string>
+    <string name="ugoos_hardware_monitor_network_category_title">Red</string>
+    <string name="ugoos_hardware_monitor_other_category_title">Otros</string>
+    <string name="ugoos_hardware_monitor_show_cpu_freq">Mostrar frecuencia de la CPU</string>
+    <string name="ugoos_hardware_monitor_show_cpu_freq_summary">Muestra la frecuencia actual de la CPU en la barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_cpu_load">Mostrar carga de la CPU</string>
+    <string name="ugoos_hardware_monitor_show_cpu_load_summary">Muestra la carga actual de la CPU en la barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_cpu_temperature">Mostrar temperatura de la CPU</string>
+    <string name="ugoos_hardware_monitor_show_cpu_temperature_summary">Muestra la temperatura actual de la CPU en la barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_display_mode">Mostrar modo de pantalla</string>
+    <string name="ugoos_hardware_monitor_show_display_mode_summary">Muestra el modo de pantalla actual en la barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_ip_address">Mostrar dirección IP</string>
+    <string name="ugoos_hardware_monitor_show_ip_address_summary">Muestra la dirección IP local en la barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_mac_address">Mostrar dirección MAC</string>
+    <string name="ugoos_hardware_monitor_show_mac_address_summary">Muestra la MAC de la red actual en la barra de estado</string>
+    <string name="ugoos_hardware_monitor_show_network_usage">Mostrar uso de la red</string>
+    <string name="ugoos_hardware_monitor_show_network_usage_summary">Muestra la velocidad actual de descarga y subida</string>
+    <string name="ugoos_hardware_monitor_show_ram">Mostrar uso de la RAM</string>
+    <string name="ugoos_hardware_monitor_show_ram_summary">Muestra la RAM en uso y la RAM total disponible</string>
+    <string name="ugoos_hardware_monitor_show_text_values">Mostrar valores en texto</string>
+    <string name="ugoos_hardware_monitor_show_text_values_summary">Muestra valores en texto e iconos</string>
+    <string name="ugoos_root">ROOT</string>
+    <string name="ugoos_root_category_title">ROOT</string>
+    <string name="ugoos_root_switch">Instalar root</string>
+    <string name="ugoos_system_bars">Barras del sistema</string>
+</resources>

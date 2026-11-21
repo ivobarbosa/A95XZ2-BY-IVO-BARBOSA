@@ -52,6 +52,8 @@ before flashing.
 
 **Full step-by-step guide: [INSTALL.md](INSTALL.md).**
 
+**User manual (PDF):** [English](01-Guia/A95XZ2-User-Manual-EN.pdf) · [Português](01-Guia/A95XZ2-Manual-PT.pdf)
+
 ## How to flash (Windows PC) — short version
 
 You need: a **USB A-to-A cable**, a Windows PC and **`A95XZ2-Flash-Tools-Windows.zip`** from the Release
@@ -87,6 +89,7 @@ Everything is built with plain Python 3 (standard library) plus `e2fsprogs` (`de
 | Folder | Content |
 |---|---|
 | `05-Construcao/` | Image tools: RKFW/RKAF unpack and rebuild (Rockchip CRC), super/dynamic partitions, ext4 patching with `debugfs`, boot image + RSCE resource (logo, DTB), boot animation generator, autoflash recovery |
+| `11-SettingsOverlay/` | Static resource overlay that translates the vendor's *More Settings* menu (pt/es/fr/de) |
 | `10-UpdateShortcut/` | Tiny `com.dtinfo.tools` app: the HK1 Settings call it for *System update*; it opens the Updater |
 | `09-Updater/` | A95X Z2 Updater source (checks `updates/updates.json`, verifies the RSA signature, applies deltas) |
 | `08-Launcher/` | A95X Z2 Home launcher source (Java, no AndroidX, built with `build.sh`: aapt2 → javac → d8 → apksigner) |

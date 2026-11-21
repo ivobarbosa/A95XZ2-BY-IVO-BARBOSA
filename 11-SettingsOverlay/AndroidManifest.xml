@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sobreposicao estatica (RRO) das Definicoes da TV: traduz o menu "More Settings" acrescentado pela
+     Ugoos/HK1 (so tinha ingles). Sem codigo; instalada em /product/overlay. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pt.a95xz2.overlay.tvsettings" android:versionCode="1" android:versionName="1.0">
+    <overlay android:targetPackage="com.android.tv.settings" android:isStatic="true" android:priority="10" />
+    <application android:hasCode="false" />
+</manifest>

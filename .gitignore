@@ -36,7 +36,6 @@ RELATORIO-*.md
 LEIA-ME.txt
 01-Guia/Guia-instalacao-A95XZ2.pdf
 01-Guia/RECUPERACAO-MASKROM.md
-01-Guia/A95XZ2-Manual-PT.pdf
 02-Scripts/
 05-Construcao/appbackup.sh
 05-Construcao/dl-fw.sh
@@ -51,3 +50,4 @@ HANDOFF.md
 05-Construcao/autoflash/stick/plano.txt
 05-Construcao/autoflash/stick/MODO
 05-Construcao/autoflash/stick/*.bin
+11-SettingsOverlay/build/

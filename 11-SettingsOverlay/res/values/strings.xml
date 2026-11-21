@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ugoos_hardware_monitor">Hardware Monitor</string>
+    <string name="ugoos_hardware_monitor_category_title">Hardware Monitor</string>
+    <string name="ugoos_hardware_monitor_cpu_and_ram_category_title">CPU &amp; RAM</string>
+    <string name="ugoos_hardware_monitor_network_category_title">Network</string>
+    <string name="ugoos_hardware_monitor_other_category_title">other</string>
+    <string name="ugoos_hardware_monitor_show_cpu_freq">Show CPU frequency</string>
+    <string name="ugoos_hardware_monitor_show_cpu_freq_summary">Displays the current CPU frequency in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_cpu_load">Show CPU load</string>
+    <string name="ugoos_hardware_monitor_show_cpu_load_summary">Displays the current CPU load in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_cpu_temperature">Show CPU Temperature</string>
+    <string name="ugoos_hardware_monitor_show_cpu_temperature_summary">Displays the current CPU temperature in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_display_mode">Show display mode</string>
+    <string name="ugoos_hardware_monitor_show_display_mode_summary">Displays the current display mode in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_ip_address">Show IP Address</string>
+    <string name="ugoos_hardware_monitor_show_ip_address_summary">Displays local IP address in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_mac_address">Show MAC Address</string>
+    <string name="ugoos_hardware_monitor_show_mac_address_summary">Displays MAC of the current network in the status bar</string>
+    <string name="ugoos_hardware_monitor_show_network_usage">Show Network Usage</string>
+    <string name="ugoos_hardware_monitor_show_network_usage_summary">Displays information about the current download and upload speed</string>
+    <string name="ugoos_hardware_monitor_show_ram">Show information about load RAM</string>
+    <string name="ugoos_hardware_monitor_show_ram_summary">Displays information about the current load and total available RAM</string>
+    <string name="ugoos_hardware_monitor_show_text_values">Show text values</string>
+    <string name="ugoos_hardware_monitor_show_text_values_summary">Displays text values and icons</string>
+    <string name="ugoos_pref_category_title">More Settings</string>
+    <string name="ugoos_root">ROOT</string>
+    <string name="ugoos_root_category_title">ROOT</string>
+    <string name="ugoos_root_switch">Install root</string>
+    <string name="ugoos_system_bars">System bars</string>
+</resources>
