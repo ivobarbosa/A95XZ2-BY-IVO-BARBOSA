@@ -8,7 +8,6 @@ with a custom lightweight launcher, root, a working front display and no bloatwa
 > ⚠️ **Use at your own risk.** Flashing firmware can make your device unbootable.
 > The authors are **not responsible for any damage**. Read **[DISCLAIMER.md](DISCLAIMER.md)** first.
 
-<p align="center"><img src="07-Logo/preview_v2_1080.png" width="640" alt="A95X Z2 boot logo"></p>
 
 ## Features
 
@@ -88,7 +87,6 @@ Everything is built with plain Python 3 (standard library) plus `e2fsprogs` (`de
 | Folder | Content |
 |---|---|
 | `05-Construcao/` | Image tools: RKFW/RKAF unpack and rebuild (Rockchip CRC), super/dynamic partitions, ext4 patching with `debugfs`, boot image + RSCE resource (logo, DTB), boot animation generator, autoflash recovery |
-| `07-Logo/` | Boot logo generator (pure Python TrueType rasterizer) |
 | `10-UpdateShortcut/` | Tiny `com.dtinfo.tools` app: the HK1 Settings call it for *System update*; it opens the Updater |
 | `09-Updater/` | A95X Z2 Updater source (checks `updates/updates.json`, verifies the RSA signature, applies deltas) |
 | `08-Launcher/` | A95X Z2 Home launcher source (Java, no AndroidX, built with `build.sh`: aapt2 → javac → d8 → apksigner) |
