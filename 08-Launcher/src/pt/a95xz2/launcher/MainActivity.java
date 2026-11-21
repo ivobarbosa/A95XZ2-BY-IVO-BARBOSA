@@ -1858,6 +1858,27 @@ public class MainActivity extends Activity {
         kl.setMargins(px(24), 0, 0, px(24));
         card.addView(keys, kl);
 
+        // 1.7: apoio ao projeto (Ko-fi) com codigo QR para abrir no telemovel
+        LinearLayout kofi = new LinearLayout(this);
+        kofi.setOrientation(LinearLayout.VERTICAL);
+        kofi.setGravity(Gravity.CENTER_HORIZONTAL);
+        ImageView qr = new ImageView(this);
+        qr.setImageResource(R.drawable.kofi_qr);
+        qr.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        GradientDrawable qbg = new GradientDrawable();
+        qbg.setCornerRadius(px(8));
+        qbg.setColor(Color.WHITE);
+        qr.setBackground(qbg);
+        qr.setPadding(px(4), px(4), px(4), px(4));
+        kofi.addView(qr, new LinearLayout.LayoutParams(px(112), px(112)));
+        TextView kt = text(I18n.s("support") + "\nko-fi.com/ivobarbosa", 11, 0xE6FFFFFF, false);
+        kt.setGravity(Gravity.CENTER_HORIZONTAL);
+        kt.setPadding(0, px(6), 0, 0);
+        kofi.addView(kt);
+        FrameLayout.LayoutParams ql = new FrameLayout.LayoutParams(-2, -2, Gravity.TOP | Gravity.END);
+        ql.setMargins(0, px(18), px(20), 0);
+        card.addView(kofi, ql);
+
         TextView ok = pill("OK");
         ok.setOnClickListener(v -> d.dismiss());
         FrameLayout.LayoutParams ol = new FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM | Gravity.END);

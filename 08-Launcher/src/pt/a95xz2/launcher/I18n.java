@@ -51,6 +51,7 @@ final class I18n {
         {"lang_auto", "Automático (idioma do sistema)", "Automatic (system language)", "Automático (idioma del sistema)", "Automatique (langue du système)", "Automatisch (Systemsprache)"},
         {"lang_system", "Idioma do sistema Android…", "Android system language…", "Idioma del sistema Android…", "Langue du système Android…", "Android-Systemsprache…"},
         {"about", "Sobre", "About", "Acerca de", "À propos", "Über"},
+        {"support", "Apoiar o projeto", "Support the project", "Apoyar el proyecto", "Soutenir le projet", "Projekt unterstützen"},
         {"about_keys", "OK: abrir  ·  MENU: opções da app  ·  HOME: início", "OK: open  ·  MENU: app options  ·  HOME: start", "OK: abrir  ·  MENÚ: opciones  ·  HOME: inicio", "OK : ouvrir  ·  MENU : options  ·  HOME : accueil", "OK: öffnen  ·  MENÜ: Optionen  ·  HOME: Start"},
         {"no_network", "Sem rede", "No network", "Sin red", "Pas de réseau", "Kein Netzwerk"},
         {"ethernet", "Cabo", "Ethernet", "Cable", "Câble", "Kabel"},
