@@ -84,6 +84,7 @@ Everything is built with plain Python 3 (standard library) plus `e2fsprogs` (`de
 |---|---|
 | `05-Construcao/` | Image tools: RKFW/RKAF unpack and rebuild (Rockchip CRC), super/dynamic partitions, ext4 patching with `debugfs`, boot image + RSCE resource (logo, DTB), boot animation generator, autoflash recovery |
 | `07-Logo/` | Boot logo generator (pure Python TrueType rasterizer) |
+| `09-Updater/` | A95X Z2 Updater source (checks `updates/updates.json`, verifies the RSA signature, applies deltas) |
 | `08-Launcher/` | A95X Z2 Home launcher source (Java, no AndroidX, built with `build.sh`: aapt2 → javac → d8 → apksigner) |
 | `01-Guia/` | MaskROM recovery guide, user manual (PDF) and photos |
 
@@ -92,8 +93,8 @@ Everything is built with plain Python 3 (standard library) plus `e2fsprogs` (`de
 
 - [x] Android 10 boots on the A95X Z2 with HDMI, Wi-Fi, remote and VFD
 - [x] Debloated image, root, SmartTube, custom launcher, logo and animation
-- [ ] **A95X Z2 Updater**: signed update manifest in this repository; automatic app updates
-- [ ] Remote firmware updates (small block-level deltas, verified before writing; the
+- [x] **A95X Z2 Updater** (*Settings → System update*): signed update manifest in this repository, firmware deltas verified block by block, app updates
+- [x] Remote firmware updates (small block-level deltas, verified before and after writing; the
       bootloader is never written remotely)
 - [ ] Translated "More Settings" menu
 

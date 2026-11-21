@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "firmware": {
+    "version": 5,
+    "name": "v5",
+    "notes": {
+      "en": "Front display: standby shows only the time (dimmed) and the clock keeps running; dynamic Wi-Fi icon; Magisk environment completed automatically (modules and systemless hosts work after a fresh flash); A95X Z2 Updater built in (Settings > System update).",
+      "pt": "Visor: em espera mostra só as horas (mais escuro) e o relógio continua a andar; ícone Wi-Fi dinâmico; ambiente do Magisk completado automaticamente (módulos e systemless hosts funcionam depois de gravar); A95X Z2 Updater incluído (Definições > Atualização do sistema)."
+    },
+    "deltas": [
+      {
+        "from": 4,
+        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v5/delta-v4-to-v5.zip",
+        "size": 64276,
+        "sha256": "5a2bf19630e8c261b798911caeb4cf95e2e8457d636ee86a36b5100735c15ed2"
+      }
+    ],
+    "full": {
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v5/update-a95xz2-a10-v5.zip",
+      "size": 950762589,
+      "sha256": "6ec5869ab1aa32e89343c1e1571fdd82851dd31d3f9a449626a99daefaaf0b16"
+    }
+  },
+  "apps": [
+    {
+      "package": "pt.a95xz2.launcher",
+      "versionCode": 3,
+      "versionName": "1.2",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v5/A95XZ2-Home-1.2.apk",
+      "size": 197301,
+      "sha256": "e1e419dc5622cf9b3d42055bc5198024b4305a21ccd80da4c583067eb0d9a024"
+    },
+    {
+      "package": "pt.a95xz2.updater",
+      "versionCode": 1,
+      "versionName": "1.0",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v5/A95XZ2-Updater-1.0.apk",
+      "size": 86693,
+      "sha256": "12582aa47f3e07faf384e597892b3cdce81ac44f8d2fcdb5c9501d77315857fa"
+    }
+  ]
+}

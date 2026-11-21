@@ -74,6 +74,28 @@ bootstrap() {
     log "5 home: pt.a95xz2.launcher nao instalado, tenta no proximo arranque"
   fi
 
+  # 5b) Ambiente do Magisk (/data/adb/magisk), como na "configuracao adicional" da app: depois de
+  #     gravar o firmware fica vazio e o magiskd aborta o post-fs-data (sem modulos nem service.d,
+  #     portanto sem o "Systemless hosts" do AdAway). Copia os binarios e scripts da app instalada.
+  ME=/data/adb/magisk
+  if [ ! -x $ME/busybox ] || [ ! -f $ME/util_functions.sh ]; then
+    MAPK=$(pm path com.topjohnwu.magisk 2>/dev/null | sed -n 's/^package://p' | head -1)
+    if [ -n "$MAPK" ]; then
+      ML=$(dirname "$MAPK")/lib/arm64
+      mkdir -p $ME
+      for x in busybox magisk magiskboot magiskinit magiskpolicy init-ld bootctl; do
+        [ -f "$ML/lib$x.so" ] && cp "$ML/lib$x.so" "$ME/$x"
+      done
+      for x in util_functions.sh boot_patch.sh addon.d.sh; do
+        unzip -o -p "$MAPK" "assets/$x" > "$ME/$x" 2>/dev/null
+      done
+      chmod -R 755 $ME; chown -R 0:0 $ME; chcon -R u:object_r:system_file:s0 $ME 2>/dev/null
+      log "5b magisk: ambiente completado em $ME (ativo no proximo arranque)"
+    else
+      log "5b magisk: app ainda nao instalada, tenta no proximo arranque"
+    fi
+  fi
+
   # 6) Root para o ADB (uid 2000 = shell) no Magisk, UMA VEZ POR INSTALACAO.
   #    O Magisk 31.1 deixou de mostrar o aviso de pedido de root: o acesso concede-se antes, no
   #    separador Superuser da app ("+"). Aqui so o shell do ADB; as apps autorizam-se pelo utilizador.
@@ -153,17 +175,41 @@ vfd_clock() {
     cmd $((136 + BRIGHT))
   }
   seg() { eval echo \$F$1; }
+  # Icones do visor (mapa medido na A95X Z2, 21/11/2026): bit2=power, bit3=LAN, bit4=":",
+  # bit5=os dois arcos maiores do Wi-Fi (acendem juntos), bit6=arco pequeno + ponto; 0/1/7 nada.
+  # Por isso o Wi-Fi so tem 2 niveis: fraco (bit6) e bom (bit5+bit6).
   icons_net() {
     n=0
-    [ "$(cat /sys/class/net/wlan0/operstate 2>/dev/null)" = up ] && n=$((n | 96))
+    if [ "$(cat /sys/class/net/wlan0/operstate 2>/dev/null)" = up ]; then
+      # RSSI em dBm via wpa_supplicant (o driver bcmdhd deixa /proc/net/wireless a zeros)
+      dbm=$(wpa_cli -i wlan0 -p /data/vendor/wifi/wpa/sockets signal_poll 2>/dev/null | sed -n 's/^RSSI=//p')
+      case "$dbm" in
+        -*) [ "$dbm" -ge -70 ] && n=$((n | 96)) || n=$((n | 64)) ;;
+        *)  n=$((n | 96)) ;;
+      esac
+    fi
     [ "$(cat /sys/class/net/eth0/operstate 2>/dev/null)" = up ] && n=$((n | 8))
     echo $n
   }
+  # Em espera (ecra desligado pelo comando) o visor mostra so as horas, com menos brilho.
+  awake() {
+    case "$(dumpsys power 2>/dev/null | grep -m1 'mWakefulness=')" in
+      *Asleep*|*Dozing*) return 1 ;;
+    esac
+    return 0
+  }
+  # Sem isto, ao desligar pelo comando a box entra em suspensao profunda: o CPU para e o visor
+  # fica congelado (hora parada, power e Wi-Fi acesos). O wake lock mantem o CPU em minimos
+  # (o Android continua em espera, HDMI desligado) e o visor mostra so as horas, a andar.
+  echo a95x_vfd > /sys/power/wake_lock 2>/dev/null && log "vfd: wake lock a95x_vfd (espera sem suspensao)"
   log "vfd: relogio GPIO ativo"
-  tick=0; net=0
+  tick=0; net=0; on=1
   while true; do
-    [ $((tick % 10)) -eq 0 ] && net=$(icons_net)
-    ic=$((4 | net))
+    if [ $((tick % 5)) -eq 0 ]; then
+      net=$(icons_net)
+      if awake; then on=1; BRIGHT=${VFD_BRIGHT:-4}; else on=0; BRIGHT=1; fi
+    fi
+    if [ $on -eq 1 ]; then ic=$((4 | net)); else ic=0; fi
     # A box nao tem RTC: ate haver hora valida (ano >= 2025, vinda da rede) o
     # relogio do sistema mostra 01:00 (1970) e depois a data de compilacao (2020).
     # Nesse periodo o visor mostra "boot" em vez de uma hora errada.
@@ -171,7 +217,8 @@ vfd_clock() {
       show 124 92 92 120 $ic       # b o o t
     else
       t=$(date +%H%M)
-      [ $((tick % 2)) -eq 0 ] && ic=$((ic | 16))
+      # ":" pisca com a box ligada; fixo em espera
+      if [ $on -eq 0 ] || [ $((tick % 2)) -eq 0 ]; then ic=$((ic | 16)); fi
       show $(seg ${t:0:1}) $(seg ${t:1:1}) $(seg ${t:2:1}) $(seg ${t:3:1}) $ic
     fi
     tick=$((tick + 1))
