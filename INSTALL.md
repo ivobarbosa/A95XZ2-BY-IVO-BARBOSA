@@ -79,8 +79,11 @@ RKDevTool must show **"Found One LOADER Device"** (or *MASKROM*) at the bottom.
 - **Network ADB** (port 5555) is **off** on a fresh install. Turn it on only if you need it, in the launcher:
   *gear menu → System → ADB debugging over network*.
 - The vendor firmware's Android security patch level is **2020-05-05**; no vendor security updates exist for this
-  box. Keep *Android System WebView* and *Chrome* updated from the Play Store, keep ad/tracker blocking on and only
-  install apps from sources you trust.
+  box. Keep ad/tracker blocking on and only install apps from sources you trust.
+- **Update the WebView (recommended, 1.1 or later):** the built-in WebView (the engine apps use to show web pages)
+  is from 2019. Sign in to the Play Store, search **"Android System WebView"** and install it. Firmware 1.1 lets
+  Android use Google's WebView — **only** when it carries Google's signature — and the Play Store keeps it updated;
+  the built-in one stays as a fallback. Keep *Chrome* updated too.
 
 ## 8. If something goes wrong
 

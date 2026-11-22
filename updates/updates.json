@@ -1,24 +1,24 @@
 {
   "schema": 1,
   "firmware": {
-    "version": 10,
-    "name": "1.0",
+    "version": 11,
+    "name": "1.1",
     "notes": {
-      "en": "Version 1.0 (stable): first public release. Apps renamed to 1.0; the updater shows the public version name.",
-      "pt": "Versão 1.0 (estável): primeira versão pública. As apps passam a 1.0 e o atualizador mostra o nome público da versão."
+      "en": "Version 1.1: Android can use an up-to-date Google WebView (install \"Android System WebView\" from the Play Store; Google signature required).",
+      "pt": "Versão 1.1: o Android passa a poder usar a WebView atualizada da Google (instale a \"Vista Web do sistema Android\" na Play Store; só aceite com a assinatura da Google)."
     },
     "deltas": [
       {
-        "from": 9,
-        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v1.0/delta-v9-to-v10.zip",
-        "size": 207355,
-        "sha256": "4cd6579457baa3f0e7912cbac9df59c9ae2d9649148d5e29f7856b149e3d065d"
+        "from": 10,
+        "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v1.1/delta-v10-to-v11.zip",
+        "size": 8192,
+        "sha256": "5c72c65ccafd08fc26e43095007b01cb89a3012c51e4f7061dd659029f4b94da"
       }
     ],
     "full": {
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v1.0/update-a95xz2-a10-1.0.zip",
-      "size": 951078829,
-      "sha256": "4553da1aae2753633637dcb45dba346fa56bb3217fed65bf4aa309b57e988e5a"
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v1.1/update-a95xz2-a10-1.1.zip",
+      "size": 951086342,
+      "sha256": "a2474bd3cf00cb108d9760752270d74f57b9f0caba59ab4d6faf3f7d4c9414e3"
     }
   },
   "apps": [
@@ -26,7 +26,7 @@
       "package": "pt.a95xz2.launcher",
       "versionCode": 9,
       "versionName": "1.0",
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v1.0/A95XZ2-Home-1.0.apk",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v1.1/A95XZ2-Home-1.0.apk",
       "size": 209668,
       "sha256": "763437b17daf26afaa6a3568f0c2eeed1a2ebeb4c687cf31646779ecdc19be58"
     },
@@ -34,7 +34,7 @@
       "package": "pt.a95xz2.updater",
       "versionCode": 8,
       "versionName": "1.0",
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v1.0/A95XZ2-Updater-1.0.apk",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v1.1/A95XZ2-Updater-1.0.apk",
       "size": 393972,
       "sha256": "320785455e23ba1b26a428101757ad7fdc41df41a5f2bc873f3ad43935c86eac"
     },
@@ -42,7 +42,7 @@
       "package": "com.dtinfo.tools",
       "versionCode": 1,
       "versionName": "1.0",
-      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v1.0/A95XZ2-UpdateShortcut-1.0.apk",
+      "url": "https://github.com/ivobarbosa/A95XZ2-BY-IVO-BARBOSA/releases/download/v1.1/A95XZ2-UpdateShortcut-1.0.apk",
       "size": 12683,
       "sha256": "69ca95e3e6278cd5dde817ab48e28384a9f70e32a0fec539360c5e251964cc08"
     }

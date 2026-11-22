@@ -91,6 +91,7 @@ Everything is built with plain Python 3 (standard library) plus `e2fsprogs` (`de
 | Folder | Content |
 |---|---|
 | `05-Construcao/` | Image tools: RKFW/RKAF unpack and rebuild (Rockchip CRC), super/dynamic partitions, ext4 patching with `debugfs`, boot image + RSCE resource (logo, DTB), boot animation generator, autoflash recovery |
+| `12-WebViewOverlay/` | Framework overlay that lets Android use Google's *Android System WebView* (Google signature required; built-in WebView as fallback) |
 | `11-SettingsOverlay/` | Static resource overlay that translates the Android Settings texts the vendor left in English (133 texts; pt/es/fr/de). Edit `translations.py`, run `python3 gen.py` then `./build.sh` |
 | `10-UpdateShortcut/` | Tiny `com.dtinfo.tools` app: the HK1 Settings call it for *System update*; it opens the Updater |
 | `09-Updater/` | A95X Z2 Updater source (checks `updates/updates.json`, verifies the RSA signature, applies deltas) |
@@ -102,7 +103,8 @@ Everything is built with plain Python 3 (standard library) plus `e2fsprogs` (`de
 
 | Version | Status | Contents |
 |---|---|---|
-| **1.0** | Stable (current) | Android 10, Magisk root, A95X Z2 Home 1.0, A95X Z2 Updater 1.0, translated Settings 1.0, front display, ad blocking |
+| **1.1** | Stable (current) | Up-to-date **Google WebView** support (install *Android System WebView* from the Play Store; Google signature required) |
+| 1.0 | Stable | Android 10, Magisk root, A95X Z2 Home 1.0, A95X Z2 Updater 1.0, translated Settings 1.0, front display, ad blocking |
 
 Only the latest release is kept in [Releases](../../releases). Later versions are delivered by the
 A95X Z2 Updater (*Settings → System update*).

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sobreposicao estatica (RRO) da framework: permite usar a WebView oficial da Google (com.google.android.webview,
+     assinatura da Google verificada pelo sistema), atualizavel pela Play Store. A WebView do sistema (74) fica
+     como reserva. Sem codigo; instalada em /product/overlay. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pt.a95xz2.overlay.webview" android:versionCode="1" android:versionName="1.0">
+    <overlay android:targetPackage="android" android:isStatic="true" android:priority="10" />
+    <application android:hasCode="false" />
+</manifest>
